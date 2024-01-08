@@ -14,12 +14,7 @@ public class TrelloHeaderFragment {
         return $x("//div[contains(@Class,'BigNavstyles__InnerHeader')]");
     }
 
-    public SelenideElement LoginButton() {
+    public SelenideElement loginButton() {
         return rootElement().$x(LOGIN_BUTTON).shouldBe(visible);
-    }
-
-    public LoginPage goToLoginPage() {
-        LoginButton().click();
-        return new LoginPage();
     }
 }
