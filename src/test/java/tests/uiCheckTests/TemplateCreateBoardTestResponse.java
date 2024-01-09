@@ -31,7 +31,7 @@ public class TemplateCreateBoardTestResponse extends TestInit {
     @Test(description = "PJ2024-35")
     @Description("TC Checking the creation of a new board")
     public void test() {
-        response = apiBoardClient.createNewBoard(boardBody);
+        response = apiBoardClient.createNewBoard(boardBody,200);
         Selenide.refresh();
 
         List<String> boardsTitles = new ArrayList<>();
@@ -43,6 +43,6 @@ public class TemplateCreateBoardTestResponse extends TestInit {
 
     @AfterMethod
     private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(response.getId());
+        apiBoardClient.deleteExistingBoard(response.getId(),200);
     }
 }
