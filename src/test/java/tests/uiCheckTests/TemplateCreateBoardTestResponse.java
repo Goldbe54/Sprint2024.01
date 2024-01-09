@@ -22,7 +22,7 @@ public class TemplateCreateBoardTestResponse extends TestInit {
     private AllBoardsFragment allBoardsFragment = new AllBoardsFragment();
     private SoftAssert softAssert = new SoftAssert();
     BoardResponse response;
-    private String BOARD_ID;
+    private String boardId;
 
     @BeforeMethod
     private void setUp() {
@@ -33,7 +33,7 @@ public class TemplateCreateBoardTestResponse extends TestInit {
     @Description("TC Checking the creation of a new board")
     public void test() {
         response = apiBoardClient.createNewBoard(boardBody, 200);
-        BOARD_ID = response.getId();
+        boardId = response.getId();
 
         Selenide.refresh();
 
@@ -46,6 +46,6 @@ public class TemplateCreateBoardTestResponse extends TestInit {
 
     @AfterMethod
     private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(BOARD_ID, 200);
+        apiBoardClient.deleteExistingBoard(boardId, 200);
     }
 }
