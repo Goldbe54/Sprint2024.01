@@ -23,7 +23,6 @@ public class TestInit {
         Configuration.reportsFolder = "./target";
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
-        Configuration.holdBrowserOpen = true;
 
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();

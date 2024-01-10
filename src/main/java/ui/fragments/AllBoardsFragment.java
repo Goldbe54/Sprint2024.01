@@ -6,7 +6,6 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
@@ -29,7 +28,7 @@ public class AllBoardsFragment {
         return ElementUtil.getListOfStrings(collection);
     }
 
-    public SelenideElement getSpecialBoardTitle (String boardId){
+    public SelenideElement specialBoardTitle(String boardId){
         return rootElement().$x(format(SPECIAL_BOARD_TITLE,boardId));
     }
 }
