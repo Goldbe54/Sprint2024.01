@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/EditBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +23,11 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="PJ2024-15" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
@@ -42,8 +49,10 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.EditBoardTest.executor": "Run",
+    "TestNG.EditBoardTest.userChangeBoardPermissionLevel.executor": "Run",
     "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
-    "git-widget-placeholder": "PJ2024-30",
+    "git-widget-placeholder": "PJ2024-13",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Staff/Sprint2024.01",
     "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
@@ -67,7 +76,30 @@
       <recent name="ui.pages" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG.EditBoardTest.userChangeBoardPermissionLevel">
+    <configuration name="EditBoardTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <option name="PACKAGE_NAME" value="tests.uiCheckTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.uiCheckTests.EditBoardTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EditBoardTest.userChangeBoardPermissionLevel" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <option name="PACKAGE_NAME" value="tests.uiCheckTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.uiCheckTests.EditBoardTest" />
+      <option name="METHOD_NAME" value="userChangeBoardPermissionLevel" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TemplateCreateBoardTestResponse.test" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Sprint2024.01" />
       <extension name="coverage">
@@ -88,6 +120,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.EditBoardTest.userChangeBoardPermissionLevel" />
+        <item itemvalue="TestNG.EditBoardTest" />
+        <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test" />
         <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test" />
       </list>
     </recent_temporary>
