@@ -5,9 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/EditBoardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/ListBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/ListResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/elements/BoardElements.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/pages/BoardPage.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/LoginPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/LoginPage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloWelcomePage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ElementUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ElementUtil.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/EditBoardTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -33,6 +50,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -50,12 +70,16 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.EditBoardTest.executor": "Run",
+    "TestNG.EditBoardTest.userChangeBoardPermissionLevel (1).executor": "Run",
     "TestNG.EditBoardTest.userChangeBoardPermissionLevel.executor": "Run",
     "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
-    "git-widget-placeholder": "PJ2024-13",
+    "git-widget-placeholder": "Merging PJ2024-13",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Staff/Sprint2024.01",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
+    "project.structure.last.edited": "Facets",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
   <component name="RecentsManager">
@@ -76,12 +100,24 @@
       <recent name="ui.pages" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.EditBoardTest.userChangeBoardPermissionLevel">
+  <component name="RunManager" selected="TestNG.EditBoardTest.userChangeBoardPermissionLevel (1)">
     <configuration name="EditBoardTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Sprint2024.01" />
       <option name="PACKAGE_NAME" value="tests.uiCheckTests" />
       <option name="MAIN_CLASS_NAME" value="tests.uiCheckTests.EditBoardTest" />
       <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EditBoardTest.userChangeBoardPermissionLevel (1)" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <option name="PACKAGE_NAME" value="tests.boardTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.boardTests.EditBoardTest" />
+      <option name="METHOD_NAME" value="userChangeBoardPermissionLevel" />
+      <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
       <method v="2">
@@ -120,6 +156,7 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.EditBoardTest.userChangeBoardPermissionLevel (1)" />
         <item itemvalue="TestNG.EditBoardTest.userChangeBoardPermissionLevel" />
         <item itemvalue="TestNG.EditBoardTest" />
         <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test" />

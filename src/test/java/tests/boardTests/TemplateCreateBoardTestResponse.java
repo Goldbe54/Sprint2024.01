@@ -1,4 +1,4 @@
-package tests.uiCheckTests;
+package tests.boardTests;
 
 import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
@@ -10,18 +10,17 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.TestInit;
-import ui.fragments.AllBoardsFragment;
+import ui.pages.TrelloHomePage;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class TemplateCreateBoardTestResponse extends TestInit {
 
-    private ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
+    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
+    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private final SoftAssert softAssert = new SoftAssert();
     private BoardBuilder boardBody;
-    private AllBoardsFragment allBoardsFragment = new AllBoardsFragment();
-    private SoftAssert softAssert = new SoftAssert();
-    BoardResponse response;
+    private BoardResponse response;
     private String boardId;
 
     @BeforeMethod
@@ -37,8 +36,8 @@ public class TemplateCreateBoardTestResponse extends TestInit {
 
         Selenide.refresh();
 
-        List<String> boardsTitles = new ArrayList<>();
-        boardsTitles = allBoardsFragment.getAllYourBoardsTitles();
+        List<String> boardsTitles;
+        boardsTitles = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();
 
         softAssert.assertTrue(boardsTitles.stream().anyMatch(genre -> genre.equals(boardBody.getName())));
         softAssert.assertAll();

@@ -1,4 +1,4 @@
-package tests.uiCheckTests;
+package tests.boardTests;
 
 import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
@@ -10,14 +10,20 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.TestInit;
+import ui.elements.BoardElements;
 import ui.fragments.AllBoardsFragment;
+import ui.pages.TrelloHomePage;
+
+import static org.testng.AssertJUnit.assertTrue;
 
 public class EditBoardTest extends TestInit {
 
     private ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private BoardBuilder boardBody;
     private AllBoardsFragment allBoardsFragment = new AllBoardsFragment();
+    private TrelloHomePage trelloHomePage = new TrelloHomePage();
     private SoftAssert softAssert = new SoftAssert();
+    private BoardElements boardElements = new BoardElements();
     private BoardResponse response;
     private String boardId;
 
@@ -36,8 +42,13 @@ public class EditBoardTest extends TestInit {
 
         Selenide.refresh();
 
+        String boardBodyName = boardBody.getName();
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
+
         apiBoardClient.updateBoard("prefs/permissionLevel", "private",
                 boardId, 200);
+
+        assertTrue(boardElements.getPrivateVisibilityIcon().isDisplayed());
 
     }
 
