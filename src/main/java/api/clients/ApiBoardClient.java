@@ -3,6 +3,7 @@ package api.clients;
 import api.BaseRestTestClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.responses.BoardResponse;
+import io.qameta.allure.Step;
 import io.restassured.response.ValidatableResponse;
 
 import static io.restassured.RestAssured.given;
@@ -12,6 +13,7 @@ public class ApiBoardClient extends BaseRestTestClient {
         super(url);
     }
 
+    @Step("Create new board. Expected status code {1}")
     public BoardResponse createNewBoard(BoardBuilder boardBody, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
@@ -24,7 +26,7 @@ public class ApiBoardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(BoardResponse.class);
     }
-
+    @Step("Delete existing board with id: {0}. Expected status code{1}")
     public ValidatableResponse deleteExistingBoard(String boardId, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)

@@ -5,6 +5,7 @@ import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
 import api.pojo.responses.BoardResponse;
 import api.pojo.responses.ListResponse;
+import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
@@ -14,6 +15,7 @@ public class ApiListClient extends BaseRestTestClient {
         super(url);
     }
 
+    @Step("Create new list on board with id: {1}. Expected status code {2} ")
     public ListResponse createNewList(ListBuilder listBody, String idBoard, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)

@@ -2,10 +2,12 @@ package ui.fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import io.qameta.allure.Step;
 import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
@@ -29,6 +31,6 @@ public class AllBoardsFragment {
     }
 
     public SelenideElement specialBoardTitle(String boardId){
-        return rootElement().$x(format(SPECIAL_BOARD_TITLE,boardId));
+        return rootElement().$x(format(SPECIAL_BOARD_TITLE,boardId)).shouldBe(visible);
     }
 }
