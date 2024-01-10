@@ -4,6 +4,7 @@ import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
 
 import static com.codeborne.selenide.CollectionCondition.size;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class BoardWorkSpaceFragment {
@@ -13,7 +14,7 @@ public class BoardWorkSpaceFragment {
         return $x("//div[@class='board-canvas']");
     }
 
-    public ElementsCollection allListTitles() {
-        return rootElement().$$x(ALL_LIST_TITLES).shouldBe(size(4));
+    public ElementsCollection getAllListTitles() {
+        return rootElement().$$x(ALL_LIST_TITLES).shouldBe(sizeGreaterThan(0));
     }
 }

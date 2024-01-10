@@ -43,10 +43,10 @@ public class CreateList extends TestInit {
 
         Selenide.refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
-        ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().allListTitles();
+        ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);
 
-        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)));
+        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)),"Lists aren't created");
         softAssert.assertAll();
     }
 

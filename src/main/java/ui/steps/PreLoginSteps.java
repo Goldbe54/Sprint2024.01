@@ -2,10 +2,10 @@ package ui.steps;
 
 import io.qameta.allure.Step;
 import ui.pages.LoginPage;
-import ui.pages.TrelloPage;
+import ui.pages.TrelloWelcomePage;
 
 public class PreLoginSteps {
-    TrelloPage trelloPage = new TrelloPage();
+    TrelloWelcomePage trelloPage = new TrelloWelcomePage();
     LoginPage loginPage = new LoginPage();
 
     @Step("Login via email by {0} and password: {1}")

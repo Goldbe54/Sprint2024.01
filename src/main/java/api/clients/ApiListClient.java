@@ -15,7 +15,7 @@ public class ApiListClient extends BaseRestTestClient {
         super(url);
     }
 
-    @Step("Create new list on board with id: {1}. Expected status code {2} ")
+    @Step("Create new list on board with id: {idBoard}. Expected status code {expectedStatusCode} ")
     public ListResponse createNewList(ListBuilder listBody, String idBoard, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)

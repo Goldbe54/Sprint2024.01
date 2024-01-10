@@ -30,7 +30,7 @@ public class AllBoardsFragment {
         return ElementUtil.getListOfStrings(collection);
     }
 
-    public SelenideElement specialBoardTitle(String boardId){
-        return rootElement().$x(format(SPECIAL_BOARD_TITLE,boardId)).shouldBe(visible);
+    public SelenideElement specialBoardTitle(String boardName){
+        return rootElement().$x(format(SPECIAL_BOARD_TITLE,boardName)).shouldBe(visible);
     }
 }
