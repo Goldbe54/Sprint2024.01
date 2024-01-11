@@ -15,7 +15,7 @@ public class ApiCardClient extends BaseRestTestClient {
         super(url);
     }
 
-    @Step("Create new card on the list with id: {listId}. Expected status code {expectedStatusCode} ")
+    @Step("Create new card on the list with id: {listId}. Expected status code {expectedStatusCode}")
     public CardResponse createNewCard(CardBuilder cardBody, String listId, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
@@ -30,7 +30,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .extract().as(CardResponse.class);
     }
 
-    @Step("Create new comment on the card with id: {idCard}. Expected status code {expectedStatusCode} ")
+    @Step("Create new comment on the card with id: {idCard}. Expected status code {expectedStatusCode}")
     public CommentOnTheCardResponse createCommentOnTheCard(CommentOnTheCardBuilder commentOnTheCardBuilder, String idCard, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
