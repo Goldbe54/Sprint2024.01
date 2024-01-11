@@ -1,6 +1,7 @@
 package tests;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.annotations.*;
@@ -29,9 +30,7 @@ public class TestInit {
         preLoginSteps.loginViaEmail(EMAIL,PASSWORD);
     }
 
-    @Step("Close driver")
-    @AfterMethod
-    private void shoutDown() {
-
+    protected static void refreshPage() {
+        Selenide.refresh();
     }
 }

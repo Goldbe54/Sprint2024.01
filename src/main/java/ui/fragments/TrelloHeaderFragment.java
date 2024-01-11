@@ -8,7 +8,7 @@ import static com.codeborne.selenide.Selenide.*;
 
 public class TrelloHeaderFragment {
 
-    private final String LOGIN_BUTTON = ".//a[contains(@href,'login')]";
+    private static final String LOGIN_BUTTON = ".//a[contains(@href,'login')]";
 
     private SelenideElement rootElement() {
         return $x("//div[contains(@Class,'BigNavstyles__InnerHeader')]");
