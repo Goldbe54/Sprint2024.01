@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CardResponse {
+
     @JsonProperty("id")
     private String id;
     @JsonProperty("subscribed")

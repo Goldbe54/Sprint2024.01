@@ -5,9 +5,9 @@ import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.CardBuilder;
+import api.pojo.requests.CommentOnTheCardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -20,7 +20,9 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-public class CreateCardTest extends TestInit {
+import static org.testng.Assert.assertEquals;
+
+public class CardTests extends TestInit {
     private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
@@ -33,6 +35,7 @@ public class CreateCardTest extends TestInit {
 
     private String boardId;
     private String listId;
+    private String idCard;
 
     @BeforeMethod
     private void setUp() {
@@ -41,7 +44,7 @@ public class CreateCardTest extends TestInit {
     }
 
     @Test(description = "Add a new card to the list")
-    @Description("PJ2024-12 ")
+    @Description("PJ2024-12")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
         refreshPage();
@@ -57,6 +60,21 @@ public class CreateCardTest extends TestInit {
         allCardsTitles = ElementUtil.getListOfStrings(allCardsTitlesElements);
 
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
+    }
+
+    @Test(description = "Positive: Adding comments to cards")
+    @Description("PJ2024-17")
+    public void addCommentToTheCard() {
+        final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
+        final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
+
+        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+
+        assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText());
     }
 
     @AfterMethod

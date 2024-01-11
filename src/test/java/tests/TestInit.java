@@ -1,7 +1,5 @@
 package tests;
 
-import api.clients.ApiBoardClient;
-import api.pojo.requests.BoardBuilder;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
@@ -36,5 +34,10 @@ public class TestInit {
 
     protected static void refreshPage() {
         Selenide.refresh();
+    }
+
+    @AfterMethod
+    public void closeBrowser() {
+        WebDriverRunner.getWebDriver().quit();
     }
 }
