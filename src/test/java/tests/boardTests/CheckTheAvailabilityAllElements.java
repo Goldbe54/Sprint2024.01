@@ -37,7 +37,7 @@ public class CheckTheAvailabilityAllElements extends TestInit {
     public void setUp() {
         boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
 

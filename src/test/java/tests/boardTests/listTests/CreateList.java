@@ -5,7 +5,6 @@ import api.clients.ApiListClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import jdk.jfr.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -46,7 +45,7 @@ public class CreateList extends TestInit {
         ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);
 
-        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)),"Lists aren't created");
+        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)), "Lists aren't created");
         softAssert.assertAll();
     }
 
