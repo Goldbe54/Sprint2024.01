@@ -43,8 +43,8 @@ public class CardTests extends TestInit {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
-    @Test(description = "PJ2024-12")
-    @Description("Add a new card to the list")
+    @Test(description = "Add a new card to the list")
+    @Description("PJ2024-12")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
         refreshPage();
@@ -62,8 +62,8 @@ public class CardTests extends TestInit {
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
     }
 
-    @Test(description = "PJ2024-17")
-    @Description("Positive: Adding comments to cards")
+    @Test(description = "Positive: Adding comments to cards")
+    @Description("PJ2024-17")
     public void addCommentToTheCard() {
         final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
         final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
