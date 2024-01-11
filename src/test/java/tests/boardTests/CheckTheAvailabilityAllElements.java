@@ -39,8 +39,8 @@ public class CheckTheAvailabilityAllElements extends TestInit {
         apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
-    @Test(description = "PJ2024-28")
-    @Description("2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
+    @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
+    @Description("PJ2024-28")
     public void checkTheAvailabilityAllElements() {
         refreshPage();
 
@@ -62,8 +62,4 @@ public class CheckTheAvailabilityAllElements extends TestInit {
         softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)));
     }
 
-    @AfterMethod
-    private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
-    }
 }

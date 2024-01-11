@@ -34,8 +34,8 @@ public class CreateList extends TestInit {
         boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
     }
 
-    @Test(description = "PJ2024-11")
-    @Description("3.1  Add a new list to the board.")
+    @Test(description = "3.1  Add a new list to the board.")
+    @Description("PJ2024-11")
     public void testListCreationOnBoard() {
         String listName = apiListClient.createNewList(listBuilder, boardId, 200).getName();
         String boardBodyName = boardBody.getName();

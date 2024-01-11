@@ -40,8 +40,8 @@ public class CreateCardTest extends TestInit {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
-    @Test(description = "PJ2024-12")
-    @Description("Add a new card to the list")
+    @Test(description = "Add a new card to the list")
+    @Description("PJ2024-12 ")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
         refreshPage();
