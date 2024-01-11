@@ -13,9 +13,9 @@ src/main/resources/aplication.conf
 .idea/workspace.xml
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
+.idea/misc.xml
 .idea/dbnavigator.xml
 .idea/shelf
-.idea/misc.xml
 *.iws
 *.iml
 *.ipr

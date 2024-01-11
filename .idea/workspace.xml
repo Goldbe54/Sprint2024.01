@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/.idea/dbnavigator.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.allure/allure-2.20.1/bin/allure" beforeDir="false" afterPath="$PROJECT_DIR$/.allure/allure-2.20.1/bin/allure" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.allure/allure-2.20.1/bin/allure.bat" beforeDir="false" afterPath="$PROJECT_DIR$/.allure/allure-2.20.1/bin/allure.bat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.allure/allure-2.20.1/plugins/behaviors-plugin/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.allure/allure-2.20.1/plugins/behaviors-plugin/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.allure/allure-2.20.1/plugins/packages-plugin/static/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/.allure/allure-2.20.1/plugins/packages-plugin/static/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +43,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
-    "git-widget-placeholder": "PJ2024-17-5.1.-Adding-comments-to-cards",
+    "git-widget-placeholder": "PJ2024-30",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Staff/Sprint2024.01",
     "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
@@ -60,7 +54,6 @@
       <recent name="E:\StaffQA\Sprint2024.01withTemplates" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="E:\StaffQA\Sprint2024.01\src\main\java\ui" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
