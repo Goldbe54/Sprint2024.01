@@ -22,7 +22,6 @@ import java.util.List;
 public class CheckTheAvailabilityAllElements extends TestInit {
     private String boardId;
     private String listId;
-    private String cardId;
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
     private final BoardBuilder boardBody = BoardBuilder.builder().build();
