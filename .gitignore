@@ -5,6 +5,7 @@ target/
 src/main/resources/aplication.conf
 
 ### IntelliJ IDEA ###
+.idea/workspace.xml
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
