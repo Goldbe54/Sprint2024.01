@@ -34,7 +34,7 @@ public class TemplateCreateBoardTestResponse extends TestInit {
         response = apiBoardClient.createNewBoard(boardBody, 200);
         boardId = response.getId();
 
-        Selenide.refresh();
+        refreshPage();
 
         List<String> boardsTitles;
         boardsTitles = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();
