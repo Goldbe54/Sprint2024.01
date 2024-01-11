@@ -3,12 +3,17 @@ target/
 !**/src/main/**/target/
 !**/src/test/**/target/
 src/main/resources/aplication.conf
+.allure
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/workspace.xml
+.idea/codeStyles/Project.xml
+.idea/codeStyles/codeStyleConfig.xml
+.idea/misc.xml
 *.iws
 *.iml
 *.ipr
