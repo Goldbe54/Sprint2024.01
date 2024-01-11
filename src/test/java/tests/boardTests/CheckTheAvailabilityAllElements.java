@@ -40,7 +40,6 @@ public class CheckTheAvailabilityAllElements extends TestInit {
         apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
-
     @Test(description = "PJ2024-28")
     @Description("2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
     public void checkTheAvailabilityAllElements() {
@@ -51,7 +50,6 @@ public class CheckTheAvailabilityAllElements extends TestInit {
         String cardName = cardBody.getName();
         List<String> allListTitles;
         List<String> allCardsTitles;
-
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
