@@ -5,7 +5,19 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiCardClient.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CardBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CommentOnTheCardBuilder.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/CardResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/CommentOnTheCardResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/CardWorkSpaceFragment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CreateCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/BoardPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/BoardPage.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +38,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -37,18 +52,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
-    "git-widget-placeholder": "PJ2024-30",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Staff/Sprint2024.01",
-    "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TestNG.TemplateCreateBoardTestResponse.test.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PJ2024-17-5.1.-Adding-comments-to-cards&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Staff/Sprint2024.01&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\StaffQA\Sprint2024.01withTemplates" />
@@ -67,7 +82,78 @@
       <recent name="ui.pages" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="TestNG.CreateCard.addCommentToTheCard">
+    <configuration name="CreateCard" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.boardTests.listTests.cardTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.boardTests.listTests.cardTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.boardTests.listTests.cardTests.CreateCard" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateCard.addCommentToTheCard" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.boardTests.listTests.cardTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.boardTests.listTests.cardTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.boardTests.listTests.cardTests.CreateCard" />
+      <option name="METHOD_NAME" value="addCommentToTheCard" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CreateList.testListCreationOnBoard" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.boardTests.listTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.boardTests.listTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.boardTests.listTests.CreateList" />
+      <option name="METHOD_NAME" value="testListCreationOnBoard" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TemplateCreateBoardTestResponse.test (1)" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Sprint2024.01" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="tests.boardTests.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="tests.boardTests" />
+      <option name="MAIN_CLASS_NAME" value="tests.boardTests.TemplateCreateBoardTestResponse" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="METHOD" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TemplateCreateBoardTestResponse.test" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Sprint2024.01" />
       <extension name="coverage">
@@ -88,6 +174,10 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.CreateCard.addCommentToTheCard" />
+        <item itemvalue="TestNG.CreateCard" />
+        <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test (1)" />
+        <item itemvalue="TestNG.CreateList.testListCreationOnBoard" />
         <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test" />
       </list>
     </recent_temporary>

@@ -1,17 +1,16 @@
 package ui.fragments;
 
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginFragment {
 
-    private final String EMAIL_FIELD = ".//input[@id='username']";
-    private final String CONTINUE_LOGIN_BUTTON = ".//button[@id='login-submit']/span";
-    private final String PASSWORD_FIELD = ".//input[@id='password']";
-    private final String LOGIN_BUTTON = ".//button[@id='login-submit']/span";
+    private static final String EMAIL_FIELD = ".//input[@id='username']";
+    private static final String CONTINUE_LOGIN_BUTTON = ".//button[@id='login-submit']/span";
+    private static final String PASSWORD_FIELD = ".//input[@id='password']";
+    private static final String LOGIN_BUTTON = ".//button[@id='login-submit']/span";
 
     private SelenideElement rootElement() {
         return $x("//div[@id='root']");
@@ -33,7 +32,7 @@ public class LoginFragment {
         return rootElement().$x(LOGIN_BUTTON).shouldBe(interactable);
     }
 
-    public void loginViaEmail(String email,String password) {
+    public void loginViaEmail(String email, String password) {
         emailField().sendKeys(email);
         continueButton().click();
         passwordField().sendKeys(password);
