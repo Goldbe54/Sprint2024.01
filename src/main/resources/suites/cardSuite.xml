@@ -1,0 +1,15 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Smoke Tests">
+
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="Smoke card tests">
+        <classes>
+            <class name="tests.boardTests.listTests.cardTests.CardTests"/>
+        </classes>
+    </test>
+</suite>

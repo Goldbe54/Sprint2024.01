@@ -5,6 +5,7 @@ import ui.pages.LoginPage;
 import ui.pages.TrelloWelcomePage;
 
 public class PreLoginSteps {
+
     TrelloWelcomePage trelloPage = new TrelloWelcomePage();
     LoginPage loginPage = new LoginPage();
 

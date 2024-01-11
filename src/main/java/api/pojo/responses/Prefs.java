@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Prefs {
+
     @JsonProperty("permissionLevel")
     private String permissionLevel;
     @JsonProperty("hideVotes")

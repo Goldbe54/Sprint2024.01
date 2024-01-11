@@ -9,6 +9,7 @@ import utils.ElementUtil;
 import java.util.List;
 
 public class TrelloHomePage extends BasePage {
+
     @Getter
     private final AllBoardsFragment allBoardsFragment = new AllBoardsFragment();
 }

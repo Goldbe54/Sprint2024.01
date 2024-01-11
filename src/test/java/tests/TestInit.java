@@ -4,6 +4,7 @@ import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
+import org.checkerframework.checker.units.qual.A;
 import org.testng.annotations.*;
 import ui.steps.PreLoginSteps;
 
@@ -32,5 +33,10 @@ public class TestInit {
 
     protected static void refreshPage() {
         Selenide.refresh();
+    }
+
+    @AfterMethod
+    public void closeBrowser(){
+        WebDriverRunner.getWebDriver().quit();
     }
 }

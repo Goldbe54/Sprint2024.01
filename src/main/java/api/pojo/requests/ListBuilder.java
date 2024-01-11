@@ -8,6 +8,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 @Data
 @Builder
 public class ListBuilder {
+
     @Builder.Default
     @JsonProperty("name")
     private String name = "List " + RandomStringUtils.randomAlphabetic(3);

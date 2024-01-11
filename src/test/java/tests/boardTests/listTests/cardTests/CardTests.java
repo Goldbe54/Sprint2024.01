@@ -29,11 +29,9 @@ public class CardTests extends TestInit {
     private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final CardBuilder cardBody = CardBuilder.builder().build();
-    private final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
-    private final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
 
     private String boardId;
     private String listId;
@@ -67,14 +65,16 @@ public class CardTests extends TestInit {
     @Test(description = "PJ2024-17")
     @Description("Positive: Adding comments to cards")
     public void addCommentToTheCard() {
+        final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
+        final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
+
         idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
-        String receivedCommentFromTheCard = boardPage.getCardFragment().getCommentOnTheCard().getText();
 
-        assertEquals(initialCommentOnTheCard, receivedCommentFromTheCard);
+        assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText());
     }
 
     @AfterMethod

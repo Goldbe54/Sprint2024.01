@@ -8,6 +8,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 @Data
 @Builder
 public class CardBuilder {
+
     @Builder.Default
     @JsonProperty("name")
     private String name = "Card " + RandomStringUtils.randomAlphabetic(3);
