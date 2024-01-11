@@ -5,22 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CreateCardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiCardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiCardClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/BoardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/ListBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/ListBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/BoardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/BoardResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/CardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/CardResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/ListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/ListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/Prefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/Prefs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CreateCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CreateCard.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -55,18 +41,18 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
-    "git-widget-placeholder": "Merging PJ2024-17-5.1.-Adding-comments-to-cards",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "E:/Staff/Sprint2024.01",
-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;TestNG.TemplateCreateBoardTestResponse.test.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PJ2024-17-5.1.-Adding-comments-to-cards&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;E:/Staff/Sprint2024.01&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;org.jetbrains.plugins.github.ui.GithubSettingsConfigurable&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\StaffQA\Sprint2024.01withTemplates" />
@@ -208,5 +194,9 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="finish" />
     <option name="LAST_COMMIT_MESSAGE" value="finish" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>

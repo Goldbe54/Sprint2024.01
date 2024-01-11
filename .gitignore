@@ -9,20 +9,15 @@ src/main/resources/aplication.conf
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/workspace.xml
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/misc.xml
 .idea
-.idea/dbnavigator.xml
-.idea/shelf
+.allure
 *.iws
 *.iml
 *.ipr
-.allure
-.allure/allure-2.20.1/bin/allure.bat
-.allure/allure-2.20.1/plugins/behaviors-plugin/static/index.js
-.allure/allure-2.20.1/plugins/packages-plugin/static/index.js
-.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated
