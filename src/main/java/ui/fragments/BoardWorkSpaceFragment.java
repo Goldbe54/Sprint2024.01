@@ -9,10 +9,10 @@ import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
 public class BoardWorkSpaceFragment {
-    private final String ALL_LIST_TITLES = ".//h2[@data-testid='list-name']";
-    private final String SPECIFIC_LIST = ".//textarea[@aria-label='%s']";
-    private final String SPECIFIC_CARD_TITLE_IN_LIST = "./ancestor::div[@data-testid='list']//a[contains(text(),'%s')]";
-    private final String ALL_CARD_TITLES = "./ancestor::div[@data-testid='list']//a";
+    private static final String ALL_LIST_TITLES = ".//h2[@data-testid='list-name']";
+    private static final String SPECIFIC_LIST = ".//textarea[@aria-label='%s']";
+    private static final String SPECIFIC_CARD_TITLE_IN_LIST = "./ancestor::div[@data-testid='list']//a[contains(text(),'%s')]";
+    private static final String ALL_CARD_TITLES = "./ancestor::div[@data-testid='list']//a";
 
     private SelenideElement rootElement() {
         return $x("//div[@class='board-canvas']");
