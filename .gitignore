@@ -4,6 +4,10 @@ target/
 !**/src/test/**/target/
 src/main/resources/aplication.conf
 .allure
+.allure/allure-2.20.1/bin/allure.bat
+.allure/allure-2.20.1/plugins/behaviors-plugin/static/index.js
+.allure/allure-2.20.1/plugins/packages-plugin/static/index.js
+.idea/workspace.xml
 
 ### IntelliJ IDEA ###
 .idea/modules.xml
