@@ -44,7 +44,7 @@ public class CreateCardTest extends TestInit {
     @Description("Add a new card to the list")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
-        Selenide.refresh();
+        refreshPage();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();

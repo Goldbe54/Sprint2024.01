@@ -41,7 +41,7 @@ public class CreateList extends TestInit {
         String listName = apiListClient.createNewList(listBuilder, boardId, 200).getName();
         String boardBodyName = boardBody.getName();
 
-        Selenide.refresh();
+        refreshPage();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
         ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);
