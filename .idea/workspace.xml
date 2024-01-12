@@ -5,26 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiCardClient.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/CardResponse.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CreateCardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/EditListAtTheBoard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/BoardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/BoardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CardBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/CardBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/requests/ListBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/requests/ListBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/BoardResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/BoardResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/ListResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/ListResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/pojo/responses/Prefs.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/pojo/responses/Prefs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/MovingCardsBetweenLists.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/MovingCardsBetweenLists.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

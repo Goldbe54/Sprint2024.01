@@ -5,9 +5,6 @@ import api.pojo.requests.ListBuilder;
 import api.pojo.responses.ListResponse;
 import io.qameta.allure.Step;
 
-import java.util.Arrays;
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
 
@@ -30,6 +27,18 @@ public class ApiListClient extends BaseRestTestClient {
                 .extract().as(ListResponse.class);
     }
 
+    @Step("Rename created list on board with id: {idList}. New name of list {listName}. Expected status code {expectedStatusCode}")
+    public ListResponse renameList(String listId, String listName, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("name", listName)
+                .put("/1/lists/{id}", listId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ListResponse.class);
+    }
 
     @Step("Move cards from source list to target list")
     public ListResponse[] moveCardsToAnotherList(String idBoard, String idListSource, String idListTarget, int expectedStatusCode) {
