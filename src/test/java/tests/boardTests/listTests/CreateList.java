@@ -1,13 +1,9 @@
 package tests.boardTests.listTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
 import jdk.jfr.Description;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.TestInit;
