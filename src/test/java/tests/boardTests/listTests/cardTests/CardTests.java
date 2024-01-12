@@ -3,10 +3,8 @@ package tests.boardTests.listTests.cardTests;
 import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.BoardBuilder;
-import api.pojo.requests.CardBuilder;
-import api.pojo.requests.CommentOnTheCardBuilder;
-import api.pojo.requests.ListBuilder;
+import api.pojo.requests.*;
+import api.pojo.responses.AttachmentOnCardResponse;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
@@ -21,6 +19,7 @@ import utils.ElementUtil;
 import java.util.List;
 
 import static org.testng.Assert.assertEquals;
+import static org.testng.Assert.assertTrue;
 
 public class CardTests extends TestInit {
     private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
@@ -65,8 +64,8 @@ public class CardTests extends TestInit {
     @Test(description = "Positive: Adding comments to cards")
     @Description("PJ2024-17")
     public void addCommentToTheCard() {
-        final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
-        final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
+        CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
+        String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
 
         idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
@@ -75,6 +74,22 @@ public class CardTests extends TestInit {
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
         assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText());
+    }
+
+    @Test(description = "Positive: Adding attachment to the cart")
+    @Description("PJ2024-51")
+    private void addAttachmentOnCard() {
+        AttachmentOnCardBuilder attachmentBody = AttachmentOnCardBuilder.builder().build();
+
+        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, 200).getName();
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+        String receivedName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
+
+        assertTrue(receivedName.contains(nameInitialAttachment));
+        assertTrue(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()).isDisplayed());
     }
 
     @AfterMethod

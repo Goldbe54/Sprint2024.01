@@ -1,8 +1,10 @@
 package api.clients;
 
 import api.BaseRestTestClient;
+import api.pojo.requests.AttachmentOnCardBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.CommentOnTheCardBuilder;
+import api.pojo.responses.AttachmentOnCardResponse;
 import api.pojo.responses.CardResponse;
 import api.pojo.responses.CommentOnTheCardResponse;
 import io.qameta.allure.Step;
@@ -42,5 +44,20 @@ public class ApiCardClient extends BaseRestTestClient {
                 .log()
                 .body()
                 .extract().as(CommentOnTheCardResponse.class);
+    }
+
+    @Step("Create attachment on the card with id: {idCard}. Expected status code {expectedStatusCode}")
+    public AttachmentOnCardResponse createAttachmentOnCard
+            (AttachmentOnCardBuilder attachmentOnCardBuilder, String idCard, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .body(attachmentOnCardBuilder)
+                .post(format("/1/cards/%s/attachments", idCard))
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(AttachmentOnCardResponse.class);
     }
 }
