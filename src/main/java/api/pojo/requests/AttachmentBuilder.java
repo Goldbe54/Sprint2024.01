@@ -8,7 +8,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 @Data
 @Builder
-public class AttachmentOnCardBuilder {
+public class AttachmentBuilder {
 
     @Builder.Default
     @JsonProperty("name")

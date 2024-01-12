@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class AttachmentOnCardResponse {
+public class AttachmentResponse {
 
     @JsonProperty("id")
     private String id;

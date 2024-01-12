@@ -4,7 +4,6 @@ import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.*;
-import api.pojo.responses.AttachmentOnCardResponse;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
@@ -79,7 +78,7 @@ public class CardTests extends TestInit {
     @Test(description = "Positive: Adding attachment to the cart")
     @Description("PJ2024-51")
     private void addAttachmentOnCard() {
-        AttachmentOnCardBuilder attachmentBody = AttachmentOnCardBuilder.builder().build();
+        AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
 
         idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, 200).getName();
