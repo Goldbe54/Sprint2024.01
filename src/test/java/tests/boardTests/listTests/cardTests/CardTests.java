@@ -18,12 +18,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-<<<<<<< HEAD
 import static com.codeborne.selenide.Selenide.refresh;
-import static org.testng.Assert.assertEquals;
 
-=======
->>>>>>> bc3c47c0cf2d560036aa0dc4a3174a295d0eea2c
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
@@ -72,7 +68,7 @@ public class CardTests extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(),"Comments are different");
+        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(), "Comments are different");
     }
 
     @Test(description = "Positive: Adding attachment to the cart")
@@ -87,6 +83,6 @@ public class CardTests extends TestInit {
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
         softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
-                .contains(nameInitialAttachment),"Attachment doesn't exist");
+                .contains(nameInitialAttachment), "Attachment doesn't exist");
     }
 }
