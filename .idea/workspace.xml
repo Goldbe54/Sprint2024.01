@@ -5,13 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/EditListAtTheBoard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,23 +42,23 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;TestNG.CreateList.testListCreationOnBoard.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.MovingCardsBetweenLists.movingCardsBetweenLists.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.TemplateCreateBoardTestResponse.test.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Merging PJ2024-38-TC.-Moving-cards-between-lists&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;E:/Staff/Sprint2024.01&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;SDKs&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "TestNG.CreateList.testListCreationOnBoard.executor": "Run",
+    "TestNG.MovingCardsBetweenLists.movingCardsBetweenLists.executor": "Run",
+    "TestNG.TemplateCreateBoardTestResponse.test.executor": "Run",
+    "git-widget-placeholder": "PJ2024-38-TC.-Moving-cards-between-lists",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "E:/Staff/Sprint2024.01",
+    "project.structure.last.edited": "SDKs",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="E:\StaffQA\Sprint2024.01withTemplates" />
