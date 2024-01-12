@@ -14,12 +14,10 @@ src/main/resources/aplication.conf
 .idea/codeStyles/codeStyleConfig.xml
 .idea/misc.xml
 .idea
-.idea/shelf/*
 .allure
 *.iws
 *.iml
 *.ipr
-.idea/workspace.xml
 
 ### Eclipse ###
 .apt_generated

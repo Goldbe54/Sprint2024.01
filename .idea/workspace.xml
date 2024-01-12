@@ -5,7 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +56,7 @@
     &quot;TestNG.EditBoardTest.userUpdateBoardName.executor&quot;: &quot;Run&quot;,
     &quot;TestNG.TemplateCreateBoardTestResponse.test (1).executor&quot;: &quot;Debug&quot;,
     &quot;TestNG.TemplateCreateBoardTestResponse.test.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;PJ2024-13&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PJ2024-38-TC.-Moving-cards-between-lists&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;E:/Staff/Sprint2024.01&quot;,
     &quot;project.structure.last.edited&quot;: &quot;Facets&quot;,
@@ -158,6 +158,13 @@
         <item itemvalue="TestNG.TemplateCreateBoardTestResponse.test" />
       </list>
     </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-21.0.1-openjdk-21.0.1-f644763e9732-f98dd351" />
+      </set>
+    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
