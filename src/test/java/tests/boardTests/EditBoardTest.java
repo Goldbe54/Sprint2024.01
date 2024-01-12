@@ -25,7 +25,6 @@ public class EditBoardTest extends TestInit {
     private TrelloHomePage trelloHomePage = new TrelloHomePage();
     private BoardResponse response;
     private String boardId;
-    private BoardResponse boardResponseBody;
 
     @BeforeMethod
     private void setUp() {
@@ -45,9 +44,9 @@ public class EditBoardTest extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
 
         String updatedName = apiBoardClient.updateBoard(boardId, "Updated name board", 200).getName();
+
         back();
         refresh();
-
 
         ElementsCollection boardsTitlesElements = trelloHomePage.getAllBoardsFragment().getAllBoardsInWorkspace();
         List<String> listsBoards = ElementUtil.getListOfStrings(boardsTitlesElements);

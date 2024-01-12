@@ -4,24 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/BaseRestTestClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/BaseRestTestClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiBoardClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/api/clients/ApiListClient.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/elements/BoardElements.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/steps/LoggedInSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/steps/LoggedInSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/utils/ElementUtil.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/utils/ElementUtil.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
-    </list>
+    <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
