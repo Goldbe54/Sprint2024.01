@@ -1,9 +1,7 @@
 package tests.boardTests.listTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ListBuilder;
 import io.qameta.allure.Description;
@@ -18,21 +16,17 @@ import java.util.List;
 
 public class EditListAtTheBoard extends TestInit {
 
-    private String boardId;
     private String listId;
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final CardBuilder cardBody = CardBuilder.builder().build();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
     @BeforeMethod
     public void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
