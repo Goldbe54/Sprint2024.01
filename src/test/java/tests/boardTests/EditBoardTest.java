@@ -32,27 +32,23 @@ public class EditBoardTest extends TestInit {
     }
 
     @Test(description = "PJ2024-13")
-    @Description("Edit board")
+    @Description("User updated board name")
     public void userUpdateBoardName() {
 
         response = apiBoardClient.createNewBoard(boardBody, 200);
         boardId = response.getId();
 
         refresh();
-
         String boardBodyName = boardBody.getName();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
-
         String updatedName = apiBoardClient.updateBoard(boardId, "Updated name board", 200).getName();
 
         back();
-        refresh();
-
+        refreshPage();
         ElementsCollection boardsTitlesElements = trelloHomePage.getAllBoardsFragment().getAllBoardsInWorkspace();
         List<String> listsBoards = ElementUtil.getListOfStrings(boardsTitlesElements);
 
         assertTrue(listsBoards.stream().anyMatch(genre -> genre.equals(updatedName)));
-
     }
 
     @AfterMethod
