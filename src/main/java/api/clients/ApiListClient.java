@@ -26,4 +26,17 @@ public class ApiListClient extends BaseRestTestClient {
                 .body()
                 .extract().as(ListResponse.class);
     }
+
+    @Step("Rename created list on board with id: {idList}. New name of list {listName}. Expected status code {expectedStatusCode}")
+     public ListResponse renameList(String listId, String listName, int expectedStatusCode){
+        return given()
+                .spec(requestSpec)
+                .queryParam("name",listName)
+                .put("/1/lists/{id}",listId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ListResponse.class);
+     }
 }

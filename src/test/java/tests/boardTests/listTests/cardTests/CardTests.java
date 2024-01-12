@@ -1,15 +1,13 @@
 package tests.boardTests.listTests.cardTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.BoardBuilder;
+import api.pojo.requests.AttachmentBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.CommentOnTheCardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -20,27 +18,26 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import static com.codeborne.selenide.Selenide.refresh;
 import static org.testng.Assert.assertEquals;
 
+=======
+>>>>>>> bc3c47c0cf2d560036aa0dc4a3174a295d0eea2c
 public class CardTests extends TestInit {
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final CardBuilder cardBody = CardBuilder.builder().build();
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
 
-    private String boardId;
     private String listId;
     private String idCard;
 
     @BeforeMethod
     private void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
@@ -66,8 +63,8 @@ public class CardTests extends TestInit {
     @Test(description = "Positive: Adding comments to cards")
     @Description("PJ2024-17")
     public void addCommentToTheCard() {
-        final CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
-        final String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
+        CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
+        String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
 
         idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
@@ -75,11 +72,21 @@ public class CardTests extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText());
+        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(),"Comments are different");
     }
 
-    @AfterMethod
-    private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
+    @Test(description = "Positive: Adding attachment to the cart")
+    @Description("PJ2024-51")
+    private void addAttachmentOnCard() {
+        AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
+
+        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, 200).getName();
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+
+        softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
+                .contains(nameInitialAttachment),"Attachment doesn't exist");
     }
 }

@@ -50,9 +50,4 @@ public class EditBoardTest extends TestInit {
                 "No matches any board name");
         softAssert.assertAll();
     }
-
-    @AfterMethod
-    private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
-    }
 }

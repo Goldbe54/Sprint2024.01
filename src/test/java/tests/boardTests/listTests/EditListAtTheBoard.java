@@ -1,10 +1,9 @@
-package tests.boardTests;
+package tests.boardTests.listTests;
 
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ListBuilder;
-import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -12,13 +11,12 @@ import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
-import utils.ElementUtil;
 
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
 
-public class CheckTheAvailabilityAllElements extends TestInit {
+public class EditListAtTheBoard extends TestInit {
 
     private String listId;
     private final BoardPage boardPage = new BoardPage();
@@ -28,33 +26,32 @@ public class CheckTheAvailabilityAllElements extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    List<String> allListTitles;
+    List<String> allCardsTitles;
 
     @BeforeMethod
-    public void setUp() {
+    public void createList() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
-    @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
-    @Description("PJ2024-28")
-    public void checkTheAvailabilityAllElements() {
-        refresh();
+    @Test(description = "3.4 Edit list at the board")
+    @Description("PJ2024-36")
+    public void editListAtTheBoard() {
 
         String boardName = boardBody.getName();
-        String listName = listBody.getName();
         String cardName = cardBody.getName();
-        List<String> allListTitles;
-        List<String> allCardsTitles;
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
-        ElementsCollection allCardsTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllCardsTitlesInList(listName);
-        allCardsTitles = ElementUtil.getListOfStrings(allCardsTitlesElements);
+        String updatedListName = apiListClient.renameList(listId, "Updated List", 200).getName();
+        refresh();
+        allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
 
-        ElementsCollection allListsTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
-        allListTitles = ElementUtil.getListOfStrings(allListsTitlesElements);
+        apiCardClient.createNewCard(cardBody, listId, 200);
 
-        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
-        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)));
+        allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(updatedListName);
+
+        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(updatedListName)), "List name is not updated");
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)), "Card is not created");
     }
 }

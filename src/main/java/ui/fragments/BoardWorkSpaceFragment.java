@@ -27,6 +27,16 @@ public class BoardWorkSpaceFragment {
         return rootElement().$$x(ALL_LIST_TITLES).shouldBe(sizeGreaterThan(0));
     }
 
+    public List<String> getListTitles(){
+        ElementsCollection allListTitles = getAllListTitles();
+        return ElementUtil.getListOfStrings(allListTitles);
+    }
+
+    public List<String> getCardTitles(String listName){
+        ElementsCollection allCardTitles = getAllCardsTitlesInList(listName);
+        return ElementUtil.getListOfStrings(allCardTitles);
+    }
+
     public SelenideElement getSpecificList(String listName) {
         return rootElement().$x(format(SPECIFIC_LIST, listName)).shouldBe(exist);
     }
