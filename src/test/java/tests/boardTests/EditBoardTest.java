@@ -2,7 +2,6 @@ package tests.boardTests;
 
 import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
-import com.codeborne.selenide.ElementsCollection;
 import jdk.jfr.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -10,7 +9,6 @@ import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.TrelloHomePage;
-import utils.ElementUtil;
 
 import java.util.List;
 
@@ -41,7 +39,7 @@ public class EditBoardTest extends TestInit {
         String boardName = boardBody.getName();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
-        apiBoardClient.updateBoard(boardId, updatedName, 200).getName();
+        apiBoardClient.updateBoardName(boardId, updatedName, 200).getName();
 
         back();
         refresh();

@@ -40,7 +40,7 @@ public class ApiBoardClient extends BaseRestTestClient {
     }
 
     @Step("Update existing board with id: {boardId}. Expected status code: {expectedStatusCode}")
-    public BoardResponse updateBoard(String boardId, String boardName, int expectedStatusCode) {
+    public BoardResponse updateBoardName(String boardId, String boardName, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .queryParam("name", boardName)
