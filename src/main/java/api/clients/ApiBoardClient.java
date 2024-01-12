@@ -26,6 +26,7 @@ public class ApiBoardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(BoardResponse.class);
     }
+
     @Step("Delete existing board with id: {boardId}. Expected status code{expectedStatusCode}")
     public ValidatableResponse deleteExistingBoard(String boardId, int expectedStatusCode) {
         return given()
