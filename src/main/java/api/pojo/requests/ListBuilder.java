@@ -11,7 +11,6 @@ public class ListBuilder {
     @Builder.Default
     @JsonProperty("name")
     private String name = "List " + RandomStringUtils.randomAlphabetic(3);
-
     @Builder.Default
     @JsonProperty("pos")
     private String pos = "top";

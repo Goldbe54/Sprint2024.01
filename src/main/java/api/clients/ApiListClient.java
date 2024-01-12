@@ -1,12 +1,12 @@
 package api.clients;
 
 import api.BaseRestTestClient;
-import api.pojo.requests.BoardBuilder;
-import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ListBuilder;
-import api.pojo.responses.BoardResponse;
 import api.pojo.responses.ListResponse;
 import io.qameta.allure.Step;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static io.restassured.RestAssured.given;
 import static java.lang.String.format;
@@ -29,18 +29,20 @@ public class ApiListClient extends BaseRestTestClient {
                 .body()
                 .extract().as(ListResponse.class);
     }
+
+
+    @Step("Move cards from source list to target list")
+    public ListResponse[] moveCardsToAnotherList(String idBoard, String idListSource, String idListTarget, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .queryParam("idBoard", idBoard)
+                .queryParam("idList", idListTarget)
+                .post(format("/1/lists/%s/moveAllCards", idListSource))
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ListResponse[].class);
+    }
 }
-
-
-//    @Step("Move card from list 2 to list 1")
-//    public ListResponse moveCardToAnotherList(CardBuilder cardBody, String idBoard, String idList, int expectedStatusCode){
-//        return given()
-//                .spec(requestSpec)
-//                .when()
-//                .baseUri("/1/lists/{id}/moveAllCards?idBoard=5abbe4b7ddc1b351ef961414&idList=5abbe4b7ddc1b351ef961414&")
-//                .pathParam("id", idList)
-//                .pathParam("idBoard", idBoard)
-//                .body(cardBody)
-////                .post(format(https://api.trello.com/1/lists/{id}/moveAllCards?idBoard=5abbe4b7ddc1b351ef961414&idList=5abbe4b7ddc1b351ef961414&key=APIKey&token=APIToken)
-//    }
-//}
