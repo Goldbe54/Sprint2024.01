@@ -24,20 +24,20 @@ public class EditListAtTheBoard extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    List<String> allListTitles;
+    List<String> allCardsTitles;
 
     @BeforeMethod
-    public void setUp() {
+    public void createList() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
     @Test(description = "3.4 Edit list at the board")
     @Description("PJ2024-36")
-    public void checkTheAvailabilityAllElements() {
+    public void editListAtTheBoard() {
 
         String boardName = boardBody.getName();
         String cardName = cardBody.getName();
-        List<String> allListTitles;
-        List<String> allCardsTitles;
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
