@@ -13,6 +13,7 @@
                 <methods>
                     <include name="createCardTest"/>
                     <include name="addCommentToTheCard"/>
+                    <include name="addAttachmentOnCard"/>
                 </methods>
             </class>
         </classes>
