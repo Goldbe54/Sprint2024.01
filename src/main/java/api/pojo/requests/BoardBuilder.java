@@ -12,23 +12,18 @@ public class BoardBuilder {
     @Builder.Default
     @JsonProperty("name")
     private String name = "Board " + RandomStringUtils.randomAlphabetic(3);
-
     @Builder.Default
     @JsonProperty("desc")
     private String desc = "Default description " + RandomStringUtils.randomAlphabetic(3);
-
     @Builder.Default
     @JsonProperty("defaultLabels")
     private Boolean defaultLabels = true;
-
     @Builder.Default
     @JsonProperty("defaultLists")
     private Boolean defaultLists = true;
-
     @Builder.Default
     @JsonProperty("prefs_permissionLevel")
     private String prefs_permissionLevel = "public";
-
     @Builder.Default
     @JsonProperty("prefs_voting")
     private String prefs_voting = "public";

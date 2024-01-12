@@ -28,13 +28,13 @@ public class TemplateCreateBoardTestResponse extends TestInit {
         boardBody = BoardBuilder.builder().build();
     }
 
-    @Test(description = "PJ2024-35")
-    @Description("TC Checking the creation of a new board")
+    @Test(description = "TC Checking the creation of a new board")
+    @Description("PJ2024-35")
     public void test() {
         response = apiBoardClient.createNewBoard(boardBody, 200);
         boardId = response.getId();
 
-        Selenide.refresh();
+        refreshPage();
 
         List<String> boardsTitles;
         boardsTitles = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();

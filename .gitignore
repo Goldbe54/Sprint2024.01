@@ -13,6 +13,8 @@ src/main/resources/aplication.conf
 .idea/codeStyles/Project.xml
 .idea/codeStyles/codeStyleConfig.xml
 .idea/misc.xml
+.idea
+.allure
 *.iws
 *.iml
 *.ipr

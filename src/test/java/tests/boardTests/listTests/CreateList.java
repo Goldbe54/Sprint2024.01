@@ -5,7 +5,6 @@ import api.clients.ApiListClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import jdk.jfr.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -35,13 +34,13 @@ public class CreateList extends TestInit {
         boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
     }
 
-    @Test(description = "PJ2024-11")
-    @Description("3.1  Add a new list to the board.")
+    @Test(description = "3.1  Add a new list to the board.")
+    @Description("PJ2024-11")
     public void testListCreationOnBoard() {
         String listName = apiListClient.createNewList(listBuilder, boardId, 200).getName();
         String boardBodyName = boardBody.getName();
 
-        Selenide.refresh();
+        refreshPage();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
         ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);
