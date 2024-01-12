@@ -20,6 +20,7 @@ src/main/resources/aplication.conf
 *.iws
 *.iml
 *.ipr
+testtest
 
 ### Eclipse ###
 .apt_generated
