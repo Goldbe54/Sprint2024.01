@@ -1,12 +1,13 @@
 package tests.boardTests.listTests.cardTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.*;
+import api.pojo.requests.AttachmentBuilder;
+import api.pojo.requests.CardBuilder;
+import api.pojo.requests.CommentOnTheCardBuilder;
+import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -21,23 +22,19 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertTrue;
 
 public class CardTests extends TestInit {
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final CardBuilder cardBody = CardBuilder.builder().build();
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
 
-    private String boardId;
     private String listId;
     private String idCard;
 
     @BeforeMethod
     private void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
     }
 
@@ -85,12 +82,8 @@ public class CardTests extends TestInit {
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+        String receivedName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
 
-        assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName())).contains(nameInitialAttachment));
-    }
-
-    @AfterMethod
-    private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
+        assertTrue(receivedName.contains(nameInitialAttachment));
     }
 }
