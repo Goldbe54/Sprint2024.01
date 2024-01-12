@@ -3,7 +3,8 @@ package api.pojo.requests;
 import io.qameta.allure.internal.shadowed.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
-import org.apache.commons.lang3.RandomStringUtils;
+
+import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 @Data
 @Builder
@@ -11,7 +12,7 @@ public class AttachmentOnCardBuilder {
 
     @Builder.Default
     @JsonProperty("name")
-    private String name = "The life cycle of a bug " + RandomStringUtils.randomAlphabetic(3);
+    private String name = "The life cycle of a bug " + randomAlphabetic(3);
     @Builder.Default
     @JsonProperty("mimeType")
     private String mimeType = "image/jpg";

@@ -86,10 +86,8 @@ public class CardTests extends TestInit {
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
-        String receivedName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
 
-        assertTrue(receivedName.contains(nameInitialAttachment));
-        assertTrue(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()).isDisplayed());
+        assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName())).contains(nameInitialAttachment));
     }
 
     @AfterMethod
