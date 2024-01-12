@@ -46,7 +46,7 @@ public class CreateList extends TestInit {
         ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);
 
-        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)),"Lists aren't created");
+        softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)), "Lists aren't created");
         softAssert.assertAll();
     }
 

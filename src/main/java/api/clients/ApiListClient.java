@@ -1,9 +1,7 @@
 package api.clients;
 
 import api.BaseRestTestClient;
-import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
-import api.pojo.responses.BoardResponse;
 import api.pojo.responses.ListResponse;
 import io.qameta.allure.Step;
 
@@ -21,7 +19,7 @@ public class ApiListClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(listBody)
-                .post(format("/1/boards/%s/lists/",idBoard))
+                .post(format("/1/boards/%s/lists/", idBoard))
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()

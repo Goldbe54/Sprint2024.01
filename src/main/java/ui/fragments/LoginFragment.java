@@ -1,9 +1,8 @@
 package ui.fragments;
 
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
-import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.interactable;
 import static com.codeborne.selenide.Selenide.$x;
 
 public class LoginFragment {
@@ -33,7 +32,7 @@ public class LoginFragment {
         return rootElement().$x(LOGIN_BUTTON).shouldBe(interactable);
     }
 
-    public void loginViaEmail(String email,String password) {
+    public void loginViaEmail(String email, String password) {
         emailField().sendKeys(email);
         continueButton().click();
         passwordField().sendKeys(password);

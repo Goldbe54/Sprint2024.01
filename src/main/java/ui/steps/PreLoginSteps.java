@@ -11,6 +11,6 @@ public class PreLoginSteps {
     @Step("Login via email by {0} and password: {1}")
     public void loginViaEmail(String email, String password) {
         trelloPage.getTrelloHeaderFragment().loginButton().click();
-        loginPage.getLoginFragment().loginViaEmail(email,password);
+        loginPage.getLoginFragment().loginViaEmail(email, password);
     }
 }

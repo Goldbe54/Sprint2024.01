@@ -4,9 +4,6 @@ import api.BaseRestTestClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.responses.BoardResponse;
 import io.qameta.allure.Step;
-import io.restassured.response.ValidatableResponse;
-
-import java.util.Map;
 
 import static io.restassured.RestAssured.given;
 
@@ -28,23 +25,30 @@ public class ApiBoardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(BoardResponse.class);
     }
+
     @Step("Delete existing board with id: {boardId}. Expected status code{expectedStatusCode}")
-    public ValidatableResponse deleteExistingBoard(String boardId, int expectedStatusCode) {
+    public BoardResponse deleteExistingBoard(String boardId, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .when()
                 .delete("/1/boards/{id}", boardId)
                 .then()
-                .statusCode(expectedStatusCode);
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(BoardResponse.class);
     }
 
-    public ValidatableResponse updateBoard(String key, String value, String boardId, int expectedStatusCode) {
+    @Step("Update existing board with id: {boardId}. Expected status code: {expectedStatusCode}")
+    public BoardResponse updateBoard(String boardId, String boardName, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
-                .pathParam("id", boardId)
-                .body(Map.of(key, value))
-                .put("/1/boards/{id}")
+                .queryParam("name", boardName)
+                .put("/1/boards/{id}", boardId)
                 .then()
-                .statusCode(expectedStatusCode);
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(BoardResponse.class);
     }
 }

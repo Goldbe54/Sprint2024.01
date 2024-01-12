@@ -7,7 +7,8 @@ import org.testng.annotations.*;
 import ui.steps.PreLoginSteps;
 
 import static com.codeborne.selenide.Selenide.open;
-import static utils.ConfigProvider.*;
+import static utils.ConfigProvider.EMAIL;
+import static utils.ConfigProvider.PASSWORD;
 
 @Listeners(listeners.TestListener.class)
 public class TestInit {
@@ -26,7 +27,7 @@ public class TestInit {
 
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();
-        preLoginSteps.loginViaEmail(EMAIL,PASSWORD);
+        preLoginSteps.loginViaEmail(EMAIL, PASSWORD);
     }
 
     @Step("Close driver")
