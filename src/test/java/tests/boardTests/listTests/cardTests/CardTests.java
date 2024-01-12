@@ -20,6 +20,7 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
 import static org.testng.Assert.assertEquals;
 
 public class CardTests extends TestInit {
@@ -47,7 +48,7 @@ public class CardTests extends TestInit {
     @Description("PJ2024-12")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
-        refreshPage();
+        refresh();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();

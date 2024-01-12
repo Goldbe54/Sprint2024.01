@@ -31,10 +31,6 @@ public class TestInit {
         preLoginSteps.loginViaEmail(EMAIL, PASSWORD);
     }
 
-    protected static void refreshPage() {
-        Selenide.refresh();
-    }
-
     @AfterMethod
     public void closeBrowser() {
         WebDriverRunner.getWebDriver().quit();

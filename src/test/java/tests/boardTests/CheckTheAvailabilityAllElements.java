@@ -19,6 +19,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class CheckTheAvailabilityAllElements extends TestInit {
     private String boardId;
     private String listId;
@@ -42,7 +44,9 @@ public class CheckTheAvailabilityAllElements extends TestInit {
     @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
     @Description("PJ2024-28")
     public void checkTheAvailabilityAllElements() {
-        refreshPage();
+
+
+        refresh();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();

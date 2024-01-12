@@ -17,6 +17,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class CreateList extends TestInit {
 
     private final SoftAssert softAssert = new SoftAssert();
@@ -40,7 +42,7 @@ public class CreateList extends TestInit {
         String listName = apiListClient.createNewList(listBuilder, boardId, 200).getName();
         String boardBodyName = boardBody.getName();
 
-        refreshPage();
+        refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBodyName).click();
         ElementsCollection listTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
         List<String> listsNames = ElementUtil.getListOfStrings(listTitlesElements);

@@ -14,6 +14,8 @@ import ui.pages.TrelloHomePage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class TemplateCreateBoardTestResponse extends TestInit {
 
     private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
@@ -34,7 +36,7 @@ public class TemplateCreateBoardTestResponse extends TestInit {
         response = apiBoardClient.createNewBoard(boardBody, 200);
         boardId = response.getId();
 
-        refreshPage();
+        refresh();
 
         List<String> boardsTitles;
         boardsTitles = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();
