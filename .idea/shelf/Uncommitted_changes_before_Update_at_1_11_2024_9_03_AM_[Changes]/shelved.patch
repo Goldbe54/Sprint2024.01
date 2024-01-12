@@ -1,0 +1,85 @@
+Index: src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package tests.uiCheckTests;\r\n\r\nimport api.clients.ApiBoardClient;\r\nimport api.pojo.requests.BoardBuilder;\r\nimport api.pojo.responses.BoardResponse;\r\nimport com.codeborne.selenide.Selenide;\r\nimport io.qameta.allure.Description;\r\nimport org.testng.annotations.BeforeMethod;\r\nimport org.testng.annotations.Test;\r\nimport org.testng.asserts.SoftAssert;\r\nimport tests.TestInit;\r\nimport ui.fragments.AllBoardsFragment;\r\nimport ui.pages.TrelloHomePage;\r\n\r\nimport java.util.ArrayList;\r\nimport java.util.List;\r\n\r\npublic class TemplateCreateBoardTestResponse extends TestInit {\r\n\r\n    private ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);\r\n    private BoardBuilder boardBody;\r\n    private AllBoardsFragment allBoardsFragment = new AllBoardsFragment();\r\n    private SoftAssert softAssert = new SoftAssert();\r\n\r\n    @BeforeMethod\r\n    private void setUp() {\r\n        boardBody = BoardBuilder.builder().build();\r\n    }\r\n\r\n    @Test(description = \"PJ2024-35\")\r\n    @Description(\"TC Checking the creation of a new board\")\r\n    public void test() {\r\n        apiBoardClient.createNewBoard(boardBody);\r\n        Selenide.refresh();\r\n\r\n        List<String> boardsTitles = new ArrayList<>();\r\n        boardsTitles = allBoardsFragment.getAllYourBoardsTitles();\r\n\r\n        softAssert.assertTrue(boardsTitles.stream().anyMatch(genre -> genre.equals(boardBody.getName())));\r\n        softAssert.assertAll();\r\n    }\r\n}\r\n
+===================================================================
+diff --git a/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java b/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java
+--- a/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java	
++++ b/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java	
+@@ -33,7 +33,7 @@
+         apiBoardClient.createNewBoard(boardBody);
+         Selenide.refresh();
+ 
+-        List<String> boardsTitles = new ArrayList<>();
++        List<String> boardsTitles;
+         boardsTitles = allBoardsFragment.getAllYourBoardsTitles();
+ 
+         softAssert.assertTrue(boardsTitles.stream().anyMatch(genre -> genre.equals(boardBody.getName())));
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"0e174d1b-6c5d-4682-8de2-7120b4619754\" name=\"Changes\" comment=\"finish\">\r\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/tests/TestInit.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/tests/TestInit.java\" afterDir=\"false\" />\r\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Interface\" />\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"MarkdownSettingsMigration\">\r\n    <option name=\"stateVersion\" value=\"1\" />\r\n  </component>\r\n  <component name=\"ProjectColorInfo\">{\r\n  &quot;associatedIndex&quot;: 6\r\n}</component>\r\n  <component name=\"ProjectId\" id=\"2aX7NO2Vzj7L4gvCUScZO8pEDsH\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"2\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\"><![CDATA[{\r\n  \"keyToString\": {\r\n    \"RunOnceActivity.OpenProjectViewOnStart\": \"true\",\r\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\r\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\r\n    \"git-widget-placeholder\": \"main\",\r\n    \"last_opened_file_path\": \"E:/Staff/Sprint2024.01\",\r\n    \"settings.editor.selected.configurable\": \"project.propVCSSupport.Confirmation\"\r\n  }\r\n}]]></component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\StaffQA\\Sprint2024.01withTemplates\" />\r\n    </key>\r\n    <key name=\"MoveFile.RECENT_KEYS\">\r\n      <recent name=\"E:\\StaffQA\\Sprint2024.01\\src\\main\\java\\ui\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\r\n      <recent name=\"api.clients.pojo.requests\" />\r\n      <recent name=\"api.clients.pojo.responses\" />\r\n      <recent name=\"api.dto\" />\r\n      <recent name=\"ui.fragments\" />\r\n      <recent name=\"ui.pages\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\">\r\n    <configuration name=\"TemplateCreateBoardTestResponse.test\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"Sprint2024.01\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\"tests.uiCheckTests.TemplateCreateBoardTestResponse\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"tests.uiCheckTests\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"tests.uiCheckTests.TemplateCreateBoardTestResponse\" />\r\n      <option name=\"METHOD_NAME\" value=\"test\" />\r\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\r\n      <properties />\r\n      <listeners />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"TestNG.TemplateCreateBoardTestResponse.test\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\r\n      <changelist id=\"0e174d1b-6c5d-4682-8de2-7120b4619754\" name=\"Changes\" comment=\"\" />\r\n      <created>1704453031659</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1704453031659</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"finish\">\r\n      <option name=\"closed\" value=\"true\" />\r\n      <created>1704724162288</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1704724162288</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"2\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <MESSAGE value=\"finish\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"finish\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	
++++ b/.idea/workspace.xml	
+@@ -5,13 +5,9 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
++      <change afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/CheckTheAvailabilityOfTheMainElements.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/LoginFragment.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/TrelloHeaderFragment.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/pages/TrelloHomePage.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/steps/PreLoginSteps.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/uiCheckTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -28,6 +24,11 @@
+     </option>
+   </component>
+   <component name="Git.Settings">
++    <option name="RECENT_BRANCH_BY_REPOSITORY">
++      <map>
++        <entry key="$PROJECT_DIR$" value="main" />
++      </map>
++    </option>
+     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+   </component>
+   <component name="MarkdownSettingsMigration">
+@@ -49,7 +50,7 @@
+     "RunOnceActivity.OpenProjectViewOnStart": "true",
+     "RunOnceActivity.ShowReadmeOnStart": "true",
+     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "git-widget-placeholder": "main",
++    "git-widget-placeholder": "PJ2024-28-Check-the-availability-and-correctness-of-the-main-elements-of-…ards-",
+     "last_opened_file_path": "E:/Staff/Sprint2024.01",
+     "settings.editor.selected.configurable": "project.propVCSSupport.Confirmation"
+   }
+Index: .idea/misc.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><project version=\"4\">\r\n  <component name=\"ExternalStorageConfigurationManager\" enabled=\"true\" />\r\n  <component name=\"MavenProjectsManager\">\r\n    <option name=\"originalFiles\">\r\n      <list>\r\n        <option value=\"$PROJECT_DIR$/pom.xml\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectRootManager\" version=\"2\" languageLevel=\"JDK_X\" default=\"true\" project-jdk-name=\"21\" project-jdk-type=\"JavaSDK\">\r\n    <output url=\"file://$PROJECT_DIR$/out\" />\r\n  </component>\r\n</project>
+===================================================================
+diff --git a/.idea/misc.xml b/.idea/misc.xml
+--- a/.idea/misc.xml	
++++ b/.idea/misc.xml	
+@@ -1,3 +1,4 @@
++<?xml version="1.0" encoding="UTF-8"?>
+ <project version="4">
+   <component name="ExternalStorageConfigurationManager" enabled="true" />
+   <component name="MavenProjectsManager">
+@@ -7,7 +8,7 @@
+       </list>
+     </option>
+   </component>
+-  <component name="ProjectRootManager" version="2" languageLevel="JDK_X" default="true" project-jdk-name="21" project-jdk-type="JavaSDK">
++  <component name="ProjectRootManager" version="2" languageLevel="JDK_20" project-jdk-name="21" project-jdk-type="JavaSDK">
+     <output url="file://$PROJECT_DIR$/out" />
+   </component>
+ </project>
+\ No newline at end of file

@@ -10,15 +10,26 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class ListResponse {
+public class AttachmentResponse {
 
     @JsonProperty("id")
     private String id;
+    @JsonProperty("bytes")
+    private String bytes;
+    @JsonProperty("date")
+    private String date;
+    @JsonProperty("edgeColor")
+    private String edgeColor;
+    @JsonProperty("idMember")
+    private String idMember;
+    @JsonProperty("isUpload")
+    private Boolean isUpload;
+    @JsonProperty("mimeType")
+    private String mimeType;
     @JsonProperty("name")
     private String name;
-    @JsonProperty("idBoard")
-    private  String idBoard;
+    @JsonProperty("url")
+    private String url;
     @JsonProperty("pos")
     private int pos;
-
 }

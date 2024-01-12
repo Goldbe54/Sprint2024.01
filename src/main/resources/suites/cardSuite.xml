@@ -1,0 +1,21 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Card Tests">
+
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
+
+    <test name="CardTests">
+        <classes>
+            <class name="tests.boardTests.listTests.cardTests.CardTests">
+                <methods>
+                    <include name="createCardTest"/>
+                    <include name="addCommentToTheCard"/>
+                    <include name="addAttachmentOnCard"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
