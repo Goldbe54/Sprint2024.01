@@ -14,10 +14,10 @@ import static java.lang.String.format;
 
 public class AllBoardsFragment {
 
-    private final String GENERAL_YOUR_BOARDS_TITLES = ".//div[@class='board-tile-details-name']";
-    private final String SPECIAL_BOARD_TITLE = ".//div[@class='board-tile-details-name']/div[contains(text(),'%s')]";
-    private final String YOUR_WORKSPACE = ".//h3[text()='YOUR WORKSPACES']/..";
-    private final String ALL_BOARDS = ".//div[@class='board-tile-details-name']";
+    private static final String GENERAL_YOUR_BOARDS_TITLES = ".//div[@class='board-tile-details-name']";
+    private static final String SPECIAL_BOARD_TITLE = ".//div[@class='board-tile-details-name']/div[contains(text(),'%s')]";
+    private static final String YOUR_WORKSPACE = ".//h3[text()='YOUR WORKSPACES']/..";
+    private static final String ALL_BOARDS = ".//div[@class='board-tile-details-name']";
 
     private SelenideElement rootElement() {
         return $x("//div[@class='all-boards']");
@@ -43,5 +43,10 @@ public class AllBoardsFragment {
 
     public ElementsCollection getAllBoardsInWorkspace() {
         return getYourWorkspace().$$x(ALL_BOARDS).shouldBe(sizeGreaterThan(0));
+    }
+
+    public List<String> getBoardsTitlesElements() {
+        ElementsCollection allBoardsList = getAllBoardsInWorkspace();
+        return ElementUtil.getListOfStrings(allBoardsList);
     }
 }

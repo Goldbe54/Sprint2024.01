@@ -8,7 +8,6 @@ import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -44,8 +43,6 @@ public class CheckTheAvailabilityAllElements extends TestInit {
     @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
     @Description("PJ2024-28")
     public void checkTheAvailabilityAllElements() {
-
-
         refresh();
 
         String boardName = boardBody.getName();

@@ -6,12 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="0e174d1b-6c5d-4682-8de2-7120b4619754" name="Changes" comment="finish">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/AllBoardsFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/fragments/BoardWorkSpaceFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/ui/steps/LoggedInSteps.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/ui/steps/LoggedInSteps.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/TestInit.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/CheckTheAvailabilityAllElements.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/EditBoardTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/TemplateCreateBoardTestResponse.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/CreateList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CardTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/tests/boardTests/listTests/cardTests/CardTests.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

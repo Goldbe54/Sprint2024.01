@@ -2,6 +2,9 @@ package ui.fragments;
 
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
+import utils.ElementUtil;
+
+import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.exist;
@@ -25,11 +28,11 @@ public class BoardWorkSpaceFragment {
     }
 
     public SelenideElement getSpecificList(String listName) {
-        return rootElement().$x(format(SPECIFIC_LIST,listName)).shouldBe(exist);
+        return rootElement().$x(format(SPECIFIC_LIST, listName)).shouldBe(exist);
     }
 
-    public SelenideElement getSpecificCardTitleInList(String listName,String cardName) {
-        return getSpecificList(listName).$x(format(SPECIFIC_CARD_TITLE_IN_LIST,cardName)).shouldBe(interactable);
+    public SelenideElement getSpecificCardTitleInList(String listName, String cardName) {
+        return getSpecificList(listName).$x(format(SPECIFIC_CARD_TITLE_IN_LIST, cardName)).shouldBe(interactable);
     }
 
     public ElementsCollection getAllCardsTitlesInList(String listName) {
