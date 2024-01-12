@@ -20,19 +20,10 @@ import java.util.List;
 public class CreateList extends TestInit {
 
     private final SoftAssert softAssert = new SoftAssert();
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBuilder = ListBuilder.builder().build();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final BoardPage boardPage = new BoardPage();
-    private String boardId;
-
-
-    @BeforeMethod
-    public void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
-    }
 
     @Test(description = "3.1  Add a new list to the board.")
     @Description("PJ2024-11")
@@ -47,10 +38,5 @@ public class CreateList extends TestInit {
 
         softAssert.assertTrue(listsNames.stream().anyMatch(genre -> genre.equals(listName)), "Lists aren't created");
         softAssert.assertAll();
-    }
-
-    @AfterMethod
-    private void shoutDown() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
     }
 }
