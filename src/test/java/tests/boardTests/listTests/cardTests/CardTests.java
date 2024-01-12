@@ -18,6 +18,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
@@ -39,7 +41,7 @@ public class CardTests extends TestInit {
     @Description("PJ2024-12")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
-        refreshPage();
+        refresh();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
@@ -66,7 +68,7 @@ public class CardTests extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(),"Comments are different");
+        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(), "Comments are different");
     }
 
     @Test(description = "Positive: Adding attachment to the cart")
@@ -81,6 +83,6 @@ public class CardTests extends TestInit {
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
         softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
-                .contains(nameInitialAttachment),"Attachment doesn't exist");
+                .contains(nameInitialAttachment), "Attachment doesn't exist");
     }
 }

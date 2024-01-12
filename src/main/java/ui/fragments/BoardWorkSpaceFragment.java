@@ -38,11 +38,11 @@ public class BoardWorkSpaceFragment {
     }
 
     public SelenideElement getSpecificList(String listName) {
-        return rootElement().$x(format(SPECIFIC_LIST,listName)).shouldBe(exist);
+        return rootElement().$x(format(SPECIFIC_LIST, listName)).shouldBe(exist);
     }
 
-    public SelenideElement getSpecificCardTitleInList(String listName,String cardName) {
-        return getSpecificList(listName).$x(format(SPECIFIC_CARD_TITLE_IN_LIST,cardName)).shouldBe(interactable);
+    public SelenideElement getSpecificCardTitleInList(String listName, String cardName) {
+        return getSpecificList(listName).$x(format(SPECIFIC_CARD_TITLE_IN_LIST, cardName)).shouldBe(interactable);
     }
 
     public ElementsCollection getAllCardsTitlesInList(String listName) {

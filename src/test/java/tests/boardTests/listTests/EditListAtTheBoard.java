@@ -14,6 +14,8 @@ import ui.pages.TrelloHomePage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class EditListAtTheBoard extends TestInit {
 
     private String listId;
@@ -42,7 +44,7 @@ public class EditListAtTheBoard extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
         String updatedListName = apiListClient.renameList(listId, "Updated List", 200).getName();
-        refreshPage();
+        refresh();
         allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
 
         apiCardClient.createNewCard(cardBody, listId, 200);

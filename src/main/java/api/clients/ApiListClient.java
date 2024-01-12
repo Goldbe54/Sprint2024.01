@@ -19,7 +19,7 @@ public class ApiListClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(listBody)
-                .post(format("/1/boards/%s/lists/",idBoard))
+                .post(format("/1/boards/%s/lists/", idBoard))
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
