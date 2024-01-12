@@ -20,21 +20,18 @@ import utils.ElementUtil;
 import java.util.List;
 
 public class CheckTheAvailabilityAllElements extends TestInit {
-    private String boardId;
+
     private String listId;
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final CardBuilder cardBody = CardBuilder.builder().build();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
     @BeforeMethod
     public void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
         apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
@@ -61,5 +58,4 @@ public class CheckTheAvailabilityAllElements extends TestInit {
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
         softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)));
     }
-
 }
