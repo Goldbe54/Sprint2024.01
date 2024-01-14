@@ -25,10 +25,10 @@ public class DeleteBoardTest extends TestInit {
         newBoardId = apiBoardClient.createNewBoard(secondBoardBody, 200).getId();
 
         refresh();
+
         List<String> allBoardsList;
         List<String> allBoardsListAfterDeleting;
         allBoardsList = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();
-
         int allBoardsCount = allBoardsList.size();
 
         softAssert.assertTrue(allBoardsCount > 0, "List is empty");
