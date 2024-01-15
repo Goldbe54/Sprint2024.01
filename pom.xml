@@ -14,7 +14,26 @@
         <aspectj.version>1.9.20.1</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
-
+    <profiles>
+        <profile>
+            <id>chrome</id>
+            <properties>
+                <browser>chrome</browser>
+            </properties>
+        </profile>
+        <profile>
+            <id>safari</id>
+            <properties>
+                <browser>safari</browser>
+            </properties>
+        </profile>
+        <profile>
+            <id>firefox</id>
+            <properties>
+                <browser>firefox</browser>
+            </properties>
+        </profile>
+    </profiles>
     <build>
         <testResources>
             <testResource>
@@ -30,8 +49,8 @@
                 <configuration>
                     <argLine>-javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"</argLine>
                     <suiteXmlFiles>
-                        <!-- suppress UnresolvedMavenProperty -->
                         <suiteXmlFile>src/main/resources/suites/defaultSuite.xml</suiteXmlFile>
+                        <suiteXmlFile>src/main/resources/suites/cardSuite.xml</suiteXmlFile>
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>

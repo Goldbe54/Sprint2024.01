@@ -66,12 +66,13 @@ public class CardTests extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(),"Comments are different");
+        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(),
+                "Comments are different");
     }
 
     @Test(description = "Positive: Adding attachment to the cart")
     @Description("PJ2024-51")
-    private void addAttachmentOnCard() {
+    public void addAttachmentOnCard() {
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
 
         idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
@@ -81,6 +82,6 @@ public class CardTests extends TestInit {
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
         softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
-                .contains(nameInitialAttachment),"Attachment doesn't exist");
+                .contains(nameInitialAttachment), "Attachment doesn't exist");
     }
 }
