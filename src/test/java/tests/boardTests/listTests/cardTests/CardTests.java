@@ -18,6 +18,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.refresh;
+
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
@@ -39,7 +41,7 @@ public class CardTests extends TestInit {
     @Description("PJ2024-12")
     private void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
-        refreshPage();
+        refresh();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();

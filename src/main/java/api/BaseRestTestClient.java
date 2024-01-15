@@ -6,7 +6,7 @@ import io.restassured.filter.log.ResponseLoggingFilter;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 
-import static io.restassured.RestAssured.*;
+import static io.restassured.RestAssured.given;
 import static utils.ConfigProvider.API_KEY;
 import static utils.ConfigProvider.API_TOKEN;
 
@@ -19,8 +19,8 @@ public class BaseRestTestClient {
 
         requestSpec = given().baseUri(url)
                 .contentType(ContentType.JSON)
-                .queryParam("key",API_KEY)
-                .queryParam("token",API_TOKEN)
+                .queryParam("key", API_KEY)
+                .queryParam("token", API_TOKEN)
                 .log().all();
 
         if (url.matches("^(https)://.*$")) {

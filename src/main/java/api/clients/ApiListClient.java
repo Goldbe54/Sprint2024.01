@@ -1,9 +1,7 @@
 package api.clients;
 
 import api.BaseRestTestClient;
-import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
-import api.pojo.responses.BoardResponse;
 import api.pojo.responses.ListResponse;
 import io.qameta.allure.Step;
 
@@ -21,11 +19,24 @@ public class ApiListClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(listBody)
-                .post(format("/1/boards/%s/lists/",idBoard))
+                .post(format("/1/boards/%s/lists/", idBoard))
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
                 .extract().as(ListResponse.class);
     }
+
+    @Step("Rename created list on board with id: {idList}. New name of list {listName}. Expected status code {expectedStatusCode}")
+     public ListResponse renameList(String listId, String listName, int expectedStatusCode){
+        return given()
+                .spec(requestSpec)
+                .queryParam("name",listName)
+                .put("/1/lists/{id}",listId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ListResponse.class);
+     }
 }

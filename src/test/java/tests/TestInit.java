@@ -3,7 +3,6 @@ package tests;
 import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
 import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
 import org.testng.annotations.AfterMethod;
@@ -41,10 +40,6 @@ public class TestInit {
         WebDriverRunner.getWebDriver().manage().window().maximize();
         preLoginSteps.loginViaEmail(EMAIL, PASSWORD);
         boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
-    }
-
-    protected static void refreshPage() {
-        Selenide.refresh();
     }
 
     @AfterMethod
