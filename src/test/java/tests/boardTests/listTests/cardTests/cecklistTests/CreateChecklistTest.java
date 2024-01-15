@@ -9,13 +9,17 @@ import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
 
+import java.util.List;
+
 import static com.codeborne.selenide.Selenide.refresh;
 
 public class CreateChecklistTest extends TestInit {
+    private final SoftAssert softAssert = new SoftAssert();
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final BoardPage boardPage = new BoardPage();
     private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
@@ -40,7 +44,8 @@ public class CreateChecklistTest extends TestInit {
 
     @Test(description = "TC Create a Checklist with a Checkitem")
     @Description("PJ2024-46")
-    private void CreateChecklistTest() {
+    public void CreateChecklistTest() {
+        List<String> checklistsTitles;
         String boardName = boardBody.getName();
         String listName = listBody.getName();
         String cardName = cardBody.getName();
@@ -50,5 +55,9 @@ public class CreateChecklistTest extends TestInit {
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,cardName).click();
+
+        checklistsTitles = boardPage.getCardFragment().getListCheckitemsTitlesInChecklist(checklistName);
+
+        softAssert.assertTrue(checklistsTitles.stream().anyMatch(genre -> genre.equals(checkitemName)),"No such checkitem in checklist");
     }
 }
