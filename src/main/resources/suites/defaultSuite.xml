@@ -7,11 +7,11 @@
     <!--    </listeners>-->
 
     <test name="Smoke tests">
-<!--        <parameter name="browser" value="chrome"></parameter>-->
+        <parameter name="browser" value="edge"></parameter>
 <!--        <parameter name="headless" value="false"></parameter>-->
 
         <classes>
-<!--            <class name="tests.smokeTests.TopRatedTest" > </class>-->
+            <class name="tests.boardTests.TemplateCreateBoardTestResponse" > </class>
         </classes>
     </test>
 </suite>
