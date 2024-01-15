@@ -11,6 +11,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ListResponse {
+
     @JsonProperty("id")
     private String id;
     @JsonProperty("name")

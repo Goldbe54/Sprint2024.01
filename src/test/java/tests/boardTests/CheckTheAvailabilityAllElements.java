@@ -1,15 +1,11 @@
-package tests.boardTests.listTests.cardTests;
+package tests.boardTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiCardClient;
 import api.clients.ApiListClient;
-import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ListBuilder;
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
@@ -20,35 +16,34 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-public class CreateCardTest extends TestInit {
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
-    private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
-    private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final BoardBuilder boardBody = BoardBuilder.builder().build();
-    private final ListBuilder listBody = ListBuilder.builder().build();
-    private final CardBuilder cardBody = CardBuilder.builder().build();
-    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
+import static com.codeborne.selenide.Selenide.refresh;
+
+public class CheckTheAvailabilityAllElements extends TestInit {
+
+    private String listId;
     private final BoardPage boardPage = new BoardPage();
     private final SoftAssert softAssert = new SoftAssert();
-
-    private String boardId;
-    private String listId;
+    private final ListBuilder listBody = ListBuilder.builder().build();
+    private final CardBuilder cardBody = CardBuilder.builder().build();
+    private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
+    private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
+    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
     @BeforeMethod
-    private void setUp() {
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
+    public void setUp() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
+        apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
-    @Test(description = "PJ2024-12")
-    @Description("Add a new card to the list")
-    private void createCardTest() {
-        apiCardClient.createNewCard(cardBody, listId, 200);
-        refreshPage();
+    @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
+    @Description("PJ2024-28")
+    public void checkTheAvailabilityAllElements() {
+        refresh();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
         String cardName = cardBody.getName();
+        List<String> allListTitles;
         List<String> allCardsTitles;
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
@@ -56,11 +51,10 @@ public class CreateCardTest extends TestInit {
         ElementsCollection allCardsTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllCardsTitlesInList(listName);
         allCardsTitles = ElementUtil.getListOfStrings(allCardsTitlesElements);
 
-        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
-    }
+        ElementsCollection allListsTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllListTitles();
+        allListTitles = ElementUtil.getListOfStrings(allListsTitlesElements);
 
-    @AfterMethod
-    private void deleteBoard() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
+        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)));
     }
 }
