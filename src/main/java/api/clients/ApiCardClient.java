@@ -60,4 +60,17 @@ public class ApiCardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(AttachmentResponse.class);
     }
+    @Step("Edit card name with id: {cardId}. Expected status code {expectedStatusCode}")
+    public CardResponse editCardName(String cardId, String newName, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("name", newName)
+                .when()
+                .put(format("/1/cards/%s", cardId))
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CardResponse.class);
+    }
 }
