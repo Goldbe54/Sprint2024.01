@@ -4,7 +4,6 @@ import api.clients.ApiBoardClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +14,7 @@ import ui.pages.TrelloHomePage;
 
 import java.util.List;
 
+import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.refresh;
 
 public class MoveListToBoard extends TestInit {
@@ -48,13 +48,16 @@ public class MoveListToBoard extends TestInit {
 
         List<String> allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
 
-        softAssert.assertTrue(allListTitles.stream().noneMatch(genre -> genre.equals(listName)), "List is not moved");
-        Selenide.back();
+        softAssert.assertTrue(allListTitles.stream().noneMatch(genre -> genre.equals(listName)),
+                "List " + listName + " is not moved");
+
+        back();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(secondBoardName).click();
 
         allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
 
-        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)), "List is not moved");
+        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)),
+                "List " + listName + " is not moved");
 
     }
 
