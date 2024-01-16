@@ -41,7 +41,7 @@ public class ApiListClient extends BaseRestTestClient {
      }
 
      @Step("Move list with id: {listId} to board with id: {boardId}")
-     public ListResponse moveList(String listId, String boardId, int expectedStatusCode){
+     public ListResponse moveListInBoard(String listId, String boardId, int expectedStatusCode){
         return given()
                 .spec(requestSpec)
                 .when()
