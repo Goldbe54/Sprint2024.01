@@ -42,6 +42,7 @@ public class TestInit {
 
     @AfterMethod
     public void closeBrowser() {
+        softAssert.assertAll();
         apiBoardClient.deleteExistingBoard(boardId, 200);
         WebDriverRunner.getWebDriver().quit();
     }
