@@ -6,15 +6,12 @@ import api.pojo.requests.AttachmentBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.CommentOnTheCardBuilder;
 import api.pojo.requests.ListBuilder;
-import com.codeborne.selenide.ElementsCollection;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
-import utils.ElementUtil;
 
 import java.util.List;
 
@@ -23,14 +20,11 @@ import static com.codeborne.selenide.Selenide.refresh;
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final ListBuilder listBody = ListBuilder.builder().build();
-    private final CardBuilder cardBody = CardBuilder.builder().build();
-    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
-    private final BoardPage boardPage = new BoardPage();
-    private final SoftAssert softAssert = new SoftAssert();
-
+    private static final ListBuilder listBody = ListBuilder.builder().build();
+    private static final CardBuilder cardBody = CardBuilder.builder().build();
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static final BoardPage boardPage = new BoardPage();
     private String listId;
-    private String idCard;
 
     @BeforeMethod
     private void setUp() {
@@ -39,7 +33,7 @@ public class CardTests extends TestInit {
 
     @Test(description = "Add a new card to the list")
     @Description("PJ2024-12")
-    private void createCardTest() {
+    public void createCardTest() {
         apiCardClient.createNewCard(cardBody, listId, 200);
         refresh();
 
@@ -50,10 +44,10 @@ public class CardTests extends TestInit {
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
-        ElementsCollection allCardsTitlesElements = boardPage.getBoardWorkSpaceFragment().getAllCardsTitlesInList(listName);
-        allCardsTitles = ElementUtil.getListOfStrings(allCardsTitlesElements);
+        allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
 
-        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)));
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)),
+                "No such card with name: " + cardName);
     }
 
     @Test(description = "Positive: Adding comments to cards")
@@ -61,28 +55,32 @@ public class CardTests extends TestInit {
     public void addCommentToTheCard() {
         CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
         String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
+        String idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
 
-        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
-
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        softAssert.assertEquals(initialCommentOnTheCard, boardPage.getCardFragment().getCommentOnTheCard().getText(), "Comments are different");
+        String commentText = boardPage.getCardFragment().getCommentOnTheCard().getText();
+
+        softAssert.assertEquals(initialCommentOnTheCard, commentText,
+                "Expected comment text: " + initialCommentOnTheCard + ", but was: " + commentText);
     }
 
     @Test(description = "Positive: Adding attachment to the cart")
     @Description("PJ2024-51")
-    private void addAttachmentOnCard() {
+    public void addAttachmentOnCard() {
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
 
-        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        String idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
         String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, 200).getName();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
-                .contains(nameInitialAttachment), "Attachment doesn't exist");
+        String attachmentName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
+
+        softAssert.assertTrue(attachmentName
+                .contains(nameInitialAttachment), "No such attachment with name: " + attachmentName);
     }
 }

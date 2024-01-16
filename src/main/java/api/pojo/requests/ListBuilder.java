@@ -1,6 +1,5 @@
 package api.pojo.requests;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Builder;
 import lombok.Data;
 
@@ -11,9 +10,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 public class ListBuilder {
 
     @Builder.Default
-    @JsonProperty("name")
     private String name = "List " + randomAlphabetic(3);
     @Builder.Default
-    @JsonProperty("pos")
     private String pos = "top";
 }

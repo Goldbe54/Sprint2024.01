@@ -11,18 +11,12 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ChecklistResponse {
-    @JsonProperty("id")
+
     private String id;
-    @JsonProperty("closed")
     private Boolean closed;
-    @JsonProperty("dateLastActivity")
     private String dateLastActivity;
-    @JsonProperty("desc")
     private String desc;
-    @JsonProperty("idBoard")
     private String idBoard;
-    @JsonProperty("idList")
     private String idList;
-    @JsonProperty("name")
     private String name;
 }

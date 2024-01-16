@@ -12,12 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CheckitemsResponse {
 
-    @JsonProperty("id")
     private String id;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("state")
     private String state;
-    @JsonProperty("idChecklist")
     private String idChecklist;
 }

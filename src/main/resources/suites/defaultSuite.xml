@@ -2,16 +2,25 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Default suite with smoke tests">
-    <!--    <listeners>-->
-
-    <!--    </listeners>-->
-
+    <listeners>
+        <listener class-name="listeners.TestListener"/>
+    </listeners>
     <test name="Smoke tests">
-        <parameter name="browser" value="edge"></parameter>
-<!--        <parameter name="headless" value="false"></parameter>-->
-
         <classes>
-            <class name="tests.boardTests.TemplateCreateBoardTestResponse" > </class>
+            <class name="tests.boardTests.TemplateCreateBoardTestResponse"/>
+            <class name="tests.boardTests.EditBoardTest"/>
+            <class name="tests.boardTests.DeleteBoardTest"/>
+            <class name="tests.boardTests.CheckTheAvailabilityAllElements"/>
+            <class name="tests.boardTests.listTests.CreateList"/>
+            <class name="tests.boardTests.listTests.EditListAtTheBoard"/>
+            <class name="tests.boardTests.listTests.cardTests.cecklistTests.CreateChecklistTest"/>
+            <class name="tests.boardTests.listTests.cardTests.CardTests">
+                <methods>
+                    <include name="createCardTest"/>
+                    <include name="addCommentToTheCard"/>
+                    <include name="addAttachmentOnCard"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>
