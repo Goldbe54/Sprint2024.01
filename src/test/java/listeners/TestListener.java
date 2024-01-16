@@ -30,7 +30,7 @@ public class TestListener implements ITestListener {
     }
 
     @Override
-    public void onTestStart(ITestResult result) {
+    public void onTestSkipped(ITestResult result) {
         System.out.println("---------------------------------------------------------------");
         System.out.println("Skipped because of - " + result.getThrowable());
         System.out.println("---------------------------------------------------------------");
