@@ -13,6 +13,7 @@
         <maven.compiler.target>21</maven.compiler.target>
         <aspectj.version>1.9.20.1</aspectj.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <browser>chrome</browser>
     </properties>
     <profiles>
         <profile>
@@ -54,6 +55,7 @@
                     </suiteXmlFiles>
                     <systemPropertyVariables>
                         <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                        <browser>${browser}</browser>
                     </systemPropertyVariables>
                 </configuration>
                 <dependencies>
