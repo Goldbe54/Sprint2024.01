@@ -21,7 +21,6 @@ import static com.codeborne.selenide.Selenide.refresh;
 public class MoveListToBoard extends TestInit {
 
     private final BoardPage boardPage = new BoardPage();
-    private final SoftAssert softAssert = new SoftAssert();
     private final ListBuilder listBody = ListBuilder.builder().build();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
