@@ -33,7 +33,6 @@ public class MoveListToBoard extends TestInit {
         secondBoardId = apiBoardClient.createNewBoard(secondBoardBody, 200).getId();
     }
 
-
     @Test(description = "Move list to board")
     @Description("PJ2024-45")
     public void moveListToBoard() {
@@ -58,7 +57,6 @@ public class MoveListToBoard extends TestInit {
 
         softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)),
                 "List " + listName + " is not moved");
-
     }
 
     @AfterMethod
