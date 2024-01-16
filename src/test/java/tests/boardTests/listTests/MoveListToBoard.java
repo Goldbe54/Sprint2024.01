@@ -19,14 +19,13 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class MoveListToBoard extends TestInit {
 
-    private final BoardPage boardPage = new BoardPage();
-    private final ListBuilder listBody = ListBuilder.builder().build();
+    private static final BoardPage boardPage = new BoardPage();
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
-    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
-    protected final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
-    protected final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
-    protected String secondBoardId;
-    private String listId;
+    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
+    private static final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
+    private static final ListBuilder listBody = ListBuilder.builder().build();
+    private static String secondBoardId, listId;
 
     @BeforeMethod
     public void createList() {
