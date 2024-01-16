@@ -3,7 +3,6 @@ package tests.boardTests;
 import api.clients.ApiBoardClient;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.TrelloHomePage;
 
@@ -14,10 +13,9 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class EditBoardTest extends TestInit {
 
-    private ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
-    private TrelloHomePage trelloHomePage = new TrelloHomePage();
-    private SoftAssert softAssert = new SoftAssert();
-    private String updatedName = "Updated name board";
+    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static final String updatedName = "Updated name board";
 
     @Test(description = "User update board name")
     @Description("PJ2024-13")

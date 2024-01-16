@@ -1,5 +1,6 @@
 package api;
 
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.filter.log.RequestLoggingFilter;
 import io.restassured.filter.log.ResponseLoggingFilter;
@@ -21,7 +22,8 @@ public class BaseRestTestClient {
                 .contentType(ContentType.JSON)
                 .queryParam("key", API_KEY)
                 .queryParam("token", API_TOKEN)
-                .log().all();
+                .log().all()
+                .filter(new AllureRestAssured());
 
         if (url.matches("^(https)://.*$")) {
             requestSpec.relaxedHTTPSValidation();
