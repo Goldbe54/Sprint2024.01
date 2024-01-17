@@ -5,9 +5,8 @@ import api.pojo.requests.BoardBuilder;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Listeners;
+import org.testng.annotations.*;
+import org.testng.asserts.SoftAssert;
 import ui.steps.PreLoginSteps;
 import utils.SuiteConfiguration;
 
@@ -23,6 +22,8 @@ public class TestInit {
     PreLoginSteps preLoginSteps = new PreLoginSteps();
     protected final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     protected final BoardBuilder boardBody = BoardBuilder.builder().build();
+    protected final SoftAssert softAssert = new SoftAssert();
+
     protected String boardId;
 
     @Step("Preparing a browser for the test")
@@ -35,6 +36,7 @@ public class TestInit {
         Configuration.reportsFolder = "./target";
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
+        Configuration.savePageSource = false;
 
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();
@@ -44,6 +46,7 @@ public class TestInit {
 
     @AfterMethod
     public void closeBrowser() {
+        softAssert.assertAll();
         apiBoardClient.deleteExistingBoard(boardId, 200);
         WebDriverRunner.getWebDriver().quit();
     }
