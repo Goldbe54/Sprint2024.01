@@ -8,6 +8,9 @@ import io.qameta.allure.Step;
 import org.testng.annotations.*;
 import org.testng.asserts.SoftAssert;
 import ui.steps.PreLoginSteps;
+import utils.SuiteConfiguration;
+
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
 import static utils.ConfigProvider.EMAIL;
@@ -24,10 +27,11 @@ public class TestInit {
     protected String boardId;
 
     @Step("Preparing a browser for the test")
-    @Parameters({"browser"})
     @BeforeMethod
-    public void setup(@Optional("chrome") String browser) {
-        Configuration.browser = browser;
+    public void setup() throws IOException {
+        SuiteConfiguration conf = new SuiteConfiguration();
+
+        Configuration.browser = conf.getBrowserProperty();
         Configuration.baseUrl = BASE_URL;
         Configuration.reportsFolder = "./target";
         Configuration.downloadsFolder = "./target";
