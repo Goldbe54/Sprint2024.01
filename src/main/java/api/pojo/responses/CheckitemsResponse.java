@@ -10,14 +10,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CommentOnTheCardResponse {
+public class CheckitemsResponse {
 
     private String id;
-    private String idMemberCreator;
-    private Object data;
-    private String type;
-    private String date;
-    private Object limits;
-    private Object display;
-    private Object memberCreator;
+    private String name;
+    private String state;
+    private String idChecklist;
 }

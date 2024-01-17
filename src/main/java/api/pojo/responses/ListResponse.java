@@ -12,11 +12,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class ListResponse {
 
-    @JsonProperty("id")
     private String id;
-    @JsonProperty("name")
     private String name;
-    @JsonProperty("idBoard")
     private  String idBoard;
     @JsonProperty("pos")
     private int pos;
