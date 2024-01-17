@@ -22,7 +22,6 @@ public class MoveListToBoard extends TestInit {
     private static final BoardPage boardPage = new BoardPage();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private static final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private static String secondBoardId, listId;
@@ -53,9 +52,7 @@ public class MoveListToBoard extends TestInit {
         back();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(secondBoardName).click();
 
-        allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
-
-        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(listName)),
+        softAssert.assertTrue(boardPage.getBoardWorkSpaceFragment().getListTitles().stream().anyMatch(genre -> genre.equals(listName)),
                 "List " + listName + " is not moved");
     }
 
