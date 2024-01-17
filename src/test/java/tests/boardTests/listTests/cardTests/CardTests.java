@@ -19,6 +19,7 @@ import utils.ElementUtil;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
@@ -34,13 +35,13 @@ public class CardTests extends TestInit {
 
     @BeforeMethod
     private void setUp() {
-        listId = apiListClient.createNewList(listBody, boardId, 200).getId();
+        listId = apiListClient.createNewList(listBody, boardId, HTTP_OK).getId();
     }
 
     @Test(description = "Add a new card to the list")
     @Description("PJ2024-12")
     private void createCardTest() {
-        apiCardClient.createNewCard(cardBody, listId, 200);
+        apiCardClient.createNewCard(cardBody, listId, HTTP_OK);
         refresh();
 
         String boardName = boardBody.getName();
@@ -62,8 +63,8 @@ public class CardTests extends TestInit {
         CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
         String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
 
-        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
-        apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, 200);
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, HTTP_OK);
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
@@ -76,13 +77,33 @@ public class CardTests extends TestInit {
     private void addAttachmentOnCard() {
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
 
-        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
-        String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, 200).getName();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, HTTP_OK).getName();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
         softAssert.assertTrue(String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()))
                 .contains(nameInitialAttachment), "Attachment doesn't exist");
+    }
+
+    @Test(description = "Moving cards between Lists")
+    @Description("PJ2024-38")
+    public void movingCardsBetweenLists() {
+        ListBuilder customBodyList = ListBuilder.builder().name("List").build();
+
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+
+        String targetListId = apiListClient.createNewList(customBodyList, boardId, HTTP_OK).getId();
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boolean enableCardOnInitialList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).isDisplayed();
+
+        softAssert.assertTrue(enableCardOnInitialList);
+
+        apiCardClient.moveCardsToAnotherList(idCard, targetListId, HTTP_OK);
+
+        boolean enableCardOnTargetList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(customBodyList.getName(), cardBody.getName()).isDisplayed();
+        softAssert.assertTrue(enableCardOnTargetList);
     }
 }

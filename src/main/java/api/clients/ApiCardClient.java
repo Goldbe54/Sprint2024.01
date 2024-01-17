@@ -60,4 +60,18 @@ public class ApiCardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(AttachmentResponse.class);
     }
+
+    @Step("Move card with id: {cardId} to other list with id: {targetListId}. Expected status code {expectedStatusCode}")
+    public CardResponse moveCardsToAnotherList(String cardId, String targetListId, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("idList", targetListId)
+                .when()
+                .put(format("/1/cards/%s", cardId))
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CardResponse.class);
+    }
 }

@@ -39,19 +39,4 @@ public class ApiListClient extends BaseRestTestClient {
                 .body()
                 .extract().as(ListResponse.class);
     }
-
-    @Step("Move cards from source list to target list")
-    public ListResponse[] moveCardsToAnotherList(String idBoard, String idListSource, String idListTarget, int expectedStatusCode) {
-        return given()
-                .spec(requestSpec)
-                .when()
-                .queryParam("idBoard", idBoard)
-                .queryParam("idList", idListTarget)
-                .post(format("/1/lists/%s/moveAllCards", idListSource))
-                .then()
-                .statusCode(expectedStatusCode)
-                .log()
-                .body()
-                .extract().as(ListResponse[].class);
-    }
 }
