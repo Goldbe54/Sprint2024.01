@@ -24,11 +24,14 @@ public class CardTests extends TestInit {
     private static final CardBuilder cardBody = CardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
-    private String listId;
+    private String listId, cardId;
+
+    List<String> allCardsTitles;
 
     @BeforeMethod
     private void setUp() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
+        cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
     @Test(description = "Add a new card to the list")
@@ -82,5 +85,31 @@ public class CardTests extends TestInit {
 
         softAssert.assertTrue(attachmentName
                 .contains(nameInitialAttachment), "No such attachment with name: " + attachmentName);
+    }
+
+    @Test(description = "3.5 Edit card at the board")
+    @Description("PJ2024-32")
+    public void editCardTest() {
+        String boardName = boardBody.getName();
+        String listName = listBody.getName();
+        String newCardName  = "Updated Name";
+        String newCardDesc  = "Updated description";
+
+        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+
+        apiCardClient.editCard(cardId, cardBody, 200);
+        refresh();
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
+
+        allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
+
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,newCardName).click();
+
+        String checkedCardDesc = boardPage.getCardFragment().getCardDescription().getText();
+
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
+                "Card name was not updated correctly");
+        softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
+        softAssert.assertAll();
     }
 }
