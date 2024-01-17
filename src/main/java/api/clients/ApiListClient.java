@@ -39,4 +39,18 @@ public class ApiListClient extends BaseRestTestClient {
                 .body()
                 .extract().as(ListResponse.class);
      }
+
+     @Step("Move list with id: {listId} to board with id: {boardId}")
+     public ListResponse moveListInBoard(String listId, String boardId, int expectedStatusCode){
+        return given()
+                .spec(requestSpec)
+                .when()
+                .queryParam("value", boardId)
+                .put("/1/lists/{id}/idBoard", listId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ListResponse.class);
+     }
 }

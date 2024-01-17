@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class DeleteBoardTest extends TestInit {
     private String newBoardId;
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private static final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
