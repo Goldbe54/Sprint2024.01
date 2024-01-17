@@ -7,7 +7,6 @@ import api.pojo.requests.ListBuilder;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
@@ -19,7 +18,6 @@ import static com.codeborne.selenide.Selenide.refresh;
 public class EditCardTest extends TestInit {
     private final BoardPage boardPage = new BoardPage();
     private final TrelloHomePage trelloHomePage = new TrelloHomePage();
-    private final SoftAssert softAssert = new SoftAssert();
     private final CardBuilder cardBody = CardBuilder.builder().build();
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
@@ -37,21 +35,24 @@ public class EditCardTest extends TestInit {
     public void editCardTest() {
         String boardName = boardBody.getName();
         String listName = listBody.getName();
-        String updatedCardName = "Updated Name";
-        String updatedCardDesc = "Updated description";
-        apiCardClient.editCard(cardId, updatedCardName, updatedCardDesc, 200);
+        String newCardName  = "Updated Name";
+        String newCardDesc  = "Updated description";
 
+        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+
+        apiCardClient.editCard(cardId, cardBody, 200);
         refresh();
-
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
+
         allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
-        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,updatedCardName).click();
+
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,newCardName).click();
+
         String checkedCardDesc = boardPage.getCardFragment().getCardDescription().getText();
 
-        softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(updatedCardName)),
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
                 "Card name was not updated correctly");
-        softAssert.assertEquals(updatedCardDesc, checkedCardDesc, "Card description was not updated correctly");
-
+        softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
         softAssert.assertAll();
     }
 }

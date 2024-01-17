@@ -7,7 +7,6 @@ import api.pojo.requests.ListBuilder;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
@@ -19,15 +18,12 @@ import static com.codeborne.selenide.Selenide.refresh;
 public class EditListAtTheBoard extends TestInit {
 
     private String listId;
-    private final BoardPage boardPage = new BoardPage();
-    private final SoftAssert softAssert = new SoftAssert();
-    private final ListBuilder listBody = ListBuilder.builder().build();
-    private final CardBuilder cardBody = CardBuilder.builder().build();
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static final BoardPage boardPage = new BoardPage();
+    private static final ListBuilder listBody = ListBuilder.builder().build();
+    private static final CardBuilder cardBody = CardBuilder.builder().build();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
-    List<String> allListTitles;
-    List<String> allCardsTitles;
 
     @BeforeMethod
     public void createList() {
@@ -38,6 +34,8 @@ public class EditListAtTheBoard extends TestInit {
     @Description("PJ2024-36")
     public void editListAtTheBoard() {
 
+        List<String> allListTitles;
+        List<String> allCardsTitles;
         String boardName = boardBody.getName();
         String cardName = cardBody.getName();
 
@@ -51,7 +49,9 @@ public class EditListAtTheBoard extends TestInit {
 
         allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(updatedListName);
 
-        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(updatedListName)), "List name is not updated");
-        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)), "Card is not created");
+        softAssert.assertTrue(allListTitles.stream().anyMatch(genre -> genre.equals(updatedListName)),
+                "List name is not updated");
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(genre -> genre.equals(cardName)),
+                "No such card with name: " + cardName);
     }
 }

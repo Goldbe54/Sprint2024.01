@@ -4,7 +4,6 @@ import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.TrelloHomePage;
 
@@ -14,10 +13,8 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class DeleteBoardTest extends TestInit {
     private String newBoardId;
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
-    private final SoftAssert softAssert = new SoftAssert();
-    private final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
-    private final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
     @Test(description = "Delete Board")
     @Description("PJ2024-39")
