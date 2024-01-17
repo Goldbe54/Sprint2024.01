@@ -13,7 +13,6 @@ import static com.codeborne.selenide.Selenide.refresh;
 
 public class EditBoardTest extends TestInit {
 
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final String updatedName = "Updated name board";
 
