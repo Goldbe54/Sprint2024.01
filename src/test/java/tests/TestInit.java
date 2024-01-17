@@ -29,6 +29,7 @@ public class TestInit {
         Configuration.reportsFolder = "./target";
         Configuration.downloadsFolder = "./target";
         Configuration.screenshots = false;
+        Configuration.holdBrowserOpen = true;
 
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();
@@ -36,9 +37,9 @@ public class TestInit {
         boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
     }
 
-    @AfterMethod
-    public void closeBrowser() {
-        apiBoardClient.deleteExistingBoard(boardId, 200);
-        WebDriverRunner.getWebDriver().quit();
-    }
+//    @AfterMethod
+//    public void closeBrowser() {
+//        apiBoardClient.deleteExistingBoard(boardId, 200);
+//        WebDriverRunner.getWebDriver().quit();
+//    }
 }

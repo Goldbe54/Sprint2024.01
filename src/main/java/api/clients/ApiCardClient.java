@@ -60,11 +60,12 @@ public class ApiCardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(AttachmentResponse.class);
     }
-    @Step("Edit card name with id: {cardId}. Expected status code {expectedStatusCode}")
-    public CardResponse editCardName(String cardId, String newName, int expectedStatusCode) {
+    @Step("Edit card with id: {cardId}. Expected status code {expectedStatusCode}")
+    public CardResponse editCard(String cardId, String newName, String newDesc, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .queryParam("name", newName)
+                .queryParam("desc", newDesc)
                 .when()
                 .put(format("/1/cards/%s", cardId))
                 .then()
@@ -73,4 +74,5 @@ public class ApiCardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(CardResponse.class);
     }
+
 }
