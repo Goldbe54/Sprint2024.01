@@ -6,6 +6,7 @@ import api.pojo.requests.AttachmentBuilder;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.CommentOnTheCardBuilder;
 import api.pojo.requests.ListBuilder;
+import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -82,5 +83,29 @@ public class CardTests extends TestInit {
 
         softAssert.assertTrue(attachmentName
                 .contains(nameInitialAttachment), "No such attachment with name: " + attachmentName);
+    }
+
+    @Test(description = " 6.1. Search by the content of boards and cards")
+    @Description("PJ2024-20")
+    public void searchByContent() {
+        String boardName = boardBody.getName();
+        String cardName = cardBody.getName();
+        List<String> searchBoardResult, searchCardResult;
+
+        apiCardClient.createNewCard(cardBody,listId,200);
+        refresh();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
+
+        searchBoardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().clear();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(cardName);
+
+        searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
+                ,"No such result with name: " + boardName);
+        softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
+                ,"No such result with name: " + cardName);
     }
 }
