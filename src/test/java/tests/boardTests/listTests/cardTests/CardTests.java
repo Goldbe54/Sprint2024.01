@@ -114,7 +114,7 @@ public class CardTests extends TestInit {
         String cardName = cardBody.getName();
         List<String> searchBoardResult, searchCardResult;
 
-        apiCardClient.createNewCard(cardBody,listId,200);
+        apiCardClient.createNewCard(cardBody,listId,HTTP_OK);
         refresh();
         trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
 
