@@ -18,6 +18,7 @@ public class CardWorkSpaceFragment {
     private static final String SELECTED_ATTACHMENT = ".//span[text()='%s']/..";
     private static final String SPECIFIC_CHECKLIST_TITLE = ".//h3[text()='%s']";
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
+    private static final String ALL_LABLE_TITLES =".//span[@data-testid='card-label']";
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
     }
@@ -29,7 +30,12 @@ public class CardWorkSpaceFragment {
     private SelenideElement getAttachmentSection() {
         return rootElement().$x(ATTACHMENT_SECTION).shouldBe(visible);
     }
+    private ElementsCollection getAllLableTitles(){return  rootElement().$$x(ALL_LABLE_TITLES).shouldBe(sizeGreaterThan(0));}
 
+    public List<String> getLableTitles(){
+        ElementsCollection allLableTitlesTitles = getAllLableTitles();
+        return ElementUtil.getListOfStrings(allLableTitlesTitles);
+    }
     public SelenideElement getSelectedAttachment(String nameAttachment) {
         return getAttachmentSection().$x(format(SELECTED_ATTACHMENT, nameAttachment)).shouldBe(visible);
     }

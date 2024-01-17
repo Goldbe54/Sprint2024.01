@@ -1,7 +1,6 @@
 package api.pojo.responses;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,10 +9,8 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckitemsResponse {
-
-    private String id;
+public class LabelResponse {
     private String name;
-    private String state;
-    private String idChecklist;
+    private String color;
+    private String idBoard;
 }
