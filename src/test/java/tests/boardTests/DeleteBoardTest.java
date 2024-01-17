@@ -1,6 +1,5 @@
 package tests.boardTests;
 
-import api.clients.ApiBoardClient;
 import api.pojo.requests.BoardBuilder;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
@@ -10,17 +9,17 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class DeleteBoardTest extends TestInit {
     private String newBoardId;
-    private final ApiBoardClient apiBoardClient = new ApiBoardClient(BASE_URL);
     private static final BoardBuilder secondBoardBody = BoardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
 
     @Test(description = "Delete Board")
     @Description("PJ2024-39")
     public void deleteBoardTest() {
-        newBoardId = apiBoardClient.createNewBoard(secondBoardBody, 200).getId();
+        newBoardId = apiBoardClient.createNewBoard(secondBoardBody, HTTP_OK).getId();
 
         refresh();
 
@@ -31,7 +30,7 @@ public class DeleteBoardTest extends TestInit {
 
         softAssert.assertTrue(allBoardsCount > 0, "List is empty");
 
-        apiBoardClient.deleteExistingBoard(newBoardId, 200);
+        apiBoardClient.deleteExistingBoard(newBoardId, HTTP_OK);
         refresh();
 
         allBoardsListAfterDeleting = trelloHomePage.getAllBoardsFragment().getAllYourBoardsTitles();

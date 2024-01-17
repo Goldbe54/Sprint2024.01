@@ -14,6 +14,7 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class CheckTheAvailabilityAllElements extends TestInit {
 
@@ -27,8 +28,8 @@ public class CheckTheAvailabilityAllElements extends TestInit {
 
     @BeforeMethod
     public void setUp() {
-        listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        apiCardClient.createNewCard(cardBody, listId, 200);
+        listId = apiListClient.createNewList(listBody, boardId, HTTP_OK).getId();
+        apiCardClient.createNewCard(cardBody, listId, HTTP_OK);
     }
 
     @Test(description = "2.2 Check the availability and correctness of the main elements of the interface (board, lists, cards)")
