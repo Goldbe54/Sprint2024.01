@@ -89,19 +89,21 @@ public class CardTests extends TestInit {
     @Description("PJ2024-38")
     public void movingCardsBetweenLists() {
         ListBuilder customBodyList = ListBuilder.builder().name("List").build();
-
+        String cardName = cardBody.getName();
+        String listName = listBody.getName();
+        String customListName = customBodyList.getName();
         String idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
-
         String targetListId = apiListClient.createNewList(customBodyList, boardId, HTTP_OK).getId();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
-        boolean enableCardOnInitialList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).isDisplayed();
 
-        softAssert.assertTrue(enableCardOnInitialList, "The card does not exist in this list");
+        boolean enableCardOnInitialList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName, cardName).isDisplayed();
 
         apiCardClient.moveCardsToAnotherList(idCard, targetListId, HTTP_OK);
 
-        boolean enableCardOnTargetList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(customBodyList.getName(), cardBody.getName()).isDisplayed();
-        softAssert.assertTrue(enableCardOnTargetList, "The card does not exist in this list");
+        boolean enableCardOnTargetList = boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(customListName, cardName).isDisplayed();
+
+        softAssert.assertTrue(enableCardOnInitialList, "The card with name: " + cardName + "does not exist in this list with name " + listName);
+        softAssert.assertTrue(enableCardOnTargetList, "The card with name: " + cardName + "does not exist in this list with name " + customListName);
     }
 }

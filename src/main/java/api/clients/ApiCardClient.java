@@ -10,7 +10,6 @@ import api.pojo.responses.CommentOnTheCardResponse;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 
 public class ApiCardClient extends BaseRestTestClient {
     public ApiCardClient(String url) {
@@ -38,7 +37,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(commentOnTheCardBuilder)
-                .post(format("/1/cards/%s/actions/comments", idCard))
+                .post("/1/cards/{id}/actions/comments", idCard)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
@@ -53,7 +52,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(attachmentOnCardBuilder)
-                .post(format("/1/cards/%s/attachments", idCard))
+                .post("/1/cards/{id}/attachments", idCard)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
@@ -67,7 +66,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .queryParam("idList", targetListId)
                 .when()
-                .put(format("/1/cards/%s", cardId))
+                .put("/1/cards/{id}", cardId)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()

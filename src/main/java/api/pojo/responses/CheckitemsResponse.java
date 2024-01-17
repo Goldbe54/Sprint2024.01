@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckItemsResponse {
+public class CheckitemsResponse {
 
     private String id;
     private String name;

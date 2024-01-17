@@ -1,14 +1,13 @@
 package api.clients;
 
 import api.BaseRestTestClient;
-import api.pojo.requests.CheckItemBuilder;
+import api.pojo.requests.CheckitemBuilder;
 import api.pojo.requests.ChecklistBuilder;
-import api.pojo.responses.CheckItemsResponse;
+import api.pojo.responses.CheckitemsResponse;
 import api.pojo.responses.ChecklistResponse;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 
 public class ApiChecklistClient extends BaseRestTestClient {
     public ApiChecklistClient(String url) {
@@ -31,17 +30,17 @@ public class ApiChecklistClient extends BaseRestTestClient {
     }
 
     @Step("Create checkitem on checklist with id: {idChecklist}. Expected status code {expectedStatusCode} ")
-    public CheckItemsResponse createNewCheckitem(CheckItemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
+    public CheckitemsResponse createNewCheckitem(CheckitemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .queryParam("idCard", idChecklist)
                 .when()
                 .body(checkitemBuilder)
-                .post(format("/1/checklists/%s/checkItems",idChecklist))
+                .post("/1/checklists/{id}/checkItems",idChecklist)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
-                .extract().as(CheckItemsResponse.class);
+                .extract().as(CheckitemsResponse.class);
     }
 }

@@ -6,7 +6,6 @@ import api.pojo.responses.ListResponse;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 
 public class ApiListClient extends BaseRestTestClient {
     public ApiListClient(String url) {
@@ -19,7 +18,7 @@ public class ApiListClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(listBody)
-                .post(format("/1/boards/%s/lists/", idBoard))
+                .post("/1/boards/{id}/lists/", idBoard)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()

@@ -4,7 +4,7 @@ import api.clients.ApiCardClient;
 import api.clients.ApiChecklistClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.CardBuilder;
-import api.pojo.requests.CheckItemBuilder;
+import api.pojo.requests.CheckitemBuilder;
 import api.pojo.requests.ChecklistBuilder;
 import api.pojo.requests.ListBuilder;
 import io.qameta.allure.Description;
@@ -26,7 +26,7 @@ public class CreateChecklistTest extends TestInit {
     private final ApiChecklistClient apiChecklistClient = new ApiChecklistClient(BASE_URL);
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private static final CardBuilder cardBody = CardBuilder.builder().build();
-    private static final CheckItemBuilder checkItemBody = CheckItemBuilder.builder().build();
+    private static final CheckitemBuilder checkItemBody = CheckitemBuilder.builder().build();
     private static final ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private String listId, cardId;
 
