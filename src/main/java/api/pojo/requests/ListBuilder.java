@@ -14,5 +14,3 @@ public class ListBuilder {
     @Builder.Default
     private String pos = "top";
 }
-
-

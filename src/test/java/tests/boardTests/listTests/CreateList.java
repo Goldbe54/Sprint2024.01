@@ -11,6 +11,7 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class CreateList extends TestInit {
 
@@ -22,7 +23,7 @@ public class CreateList extends TestInit {
     @Test(description = "3.1  Add a new list to the board.")
     @Description("PJ2024-11")
     public void testListCreationOnBoard() {
-        String listName = apiListClient.createNewList(listBuilder, boardId, 200).getName();
+        String listName = apiListClient.createNewList(listBuilder, boardId, HTTP_OK).getName();
         String boardBodyName = boardBody.getName();
 
         refresh();

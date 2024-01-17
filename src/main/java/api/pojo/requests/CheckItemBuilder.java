@@ -7,7 +7,7 @@ import static org.apache.commons.lang3.RandomStringUtils.randomAlphabetic;
 
 @Data
 @Builder
-public class CheckitemBuilder {
+public class CheckItemBuilder {
 
     @Builder.Default
     private String name = "CheckItem " + randomAlphabetic(3);

@@ -1,10 +1,9 @@
 package api.clients;
 
 import api.BaseRestTestClient;
-import api.pojo.requests.CheckitemBuilder;
+import api.pojo.requests.CheckItemBuilder;
 import api.pojo.requests.ChecklistBuilder;
-import api.pojo.responses.CardResponse;
-import api.pojo.responses.CheckitemsResponse;
+import api.pojo.responses.CheckItemsResponse;
 import api.pojo.responses.ChecklistResponse;
 import io.qameta.allure.Step;
 
@@ -32,7 +31,7 @@ public class ApiChecklistClient extends BaseRestTestClient {
     }
 
     @Step("Create checkitem on checklist with id: {idChecklist}. Expected status code {expectedStatusCode} ")
-    public CheckitemsResponse createNewCheckitem(CheckitemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
+    public CheckItemsResponse createNewCheckitem(CheckItemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .queryParam("idCard", idChecklist)
@@ -43,6 +42,6 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
-                .extract().as(CheckitemsResponse.class);
+                .extract().as(CheckItemsResponse.class);
     }
 }
