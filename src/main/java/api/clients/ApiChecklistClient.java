@@ -3,13 +3,11 @@ package api.clients;
 import api.BaseRestTestClient;
 import api.pojo.requests.CheckitemBuilder;
 import api.pojo.requests.ChecklistBuilder;
-import api.pojo.responses.CardResponse;
 import api.pojo.responses.CheckitemsResponse;
 import api.pojo.responses.ChecklistResponse;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 
 public class ApiChecklistClient extends BaseRestTestClient {
     public ApiChecklistClient(String url) {
@@ -38,7 +36,7 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .queryParam("idCard", idChecklist)
                 .when()
                 .body(checkitemBuilder)
-                .post(format("/1/checklists/%s/checkItems",idChecklist))
+                .post("/1/checklists/{id}/checkItems",idChecklist)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
