@@ -106,4 +106,13 @@ public class CardTests extends TestInit {
         softAssert.assertTrue(enableCardOnInitialList, "The card with name: " + cardName + "does not exist in this list with name " + listName);
         softAssert.assertTrue(enableCardOnTargetList, "The card with name: " + cardName + "does not exist in this list with name " + customListName);
     }
+
+    @Test(description = "Checking the card archiving")
+    @Description("PJ2024-53")
+    public void archiveTheCardTest() {
+        String idCard = apiCardClient.createNewCard(cardBody,listId,HTTP_OK).getId();
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+
+    }
 }
