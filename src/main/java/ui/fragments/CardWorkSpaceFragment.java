@@ -13,11 +13,13 @@ import static java.lang.String.format;
 
 public class CardWorkSpaceFragment {
 
+    private static final String GENERAL_CHECKLISTS_TITLES = ".//h3[contains(@id,'checklist')]";
     private static final String COMMENT_NAME = ".//div[@class='comment-container']";
     private static final String ATTACHMENT_SECTION = ".//div[contains(@class,'js-attachment-list')]";
     private static final String SELECTED_ATTACHMENT = ".//span[text()='%s']/..";
     private static final String SPECIFIC_CHECKLIST_TITLE = ".//h3[text()='%s']";
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
+
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
     }
@@ -35,9 +37,16 @@ public class CardWorkSpaceFragment {
     }
 
     public SelenideElement getSpecificChecklistName(String checklistName) {
-        return rootElement().$x(format(SPECIFIC_CHECKLIST_TITLE,checklistName)).shouldBe(visible);
+        return rootElement().$x(format(SPECIFIC_CHECKLIST_TITLE, checklistName)).shouldBe(visible);
     }
-    
+     public ElementsCollection getAllChecklistTitles(){
+         return rootElement().$$x(GENERAL_CHECKLISTS_TITLES).shouldBe(sizeGreaterThan(0));
+     }
+    public List<String> getChecklistTitles(){
+        ElementsCollection allChecklistTitles = getAllChecklistTitles();
+        return ElementUtil.getListOfStrings(allChecklistTitles);
+    }
+
     public List<String> getListCheckitemsTitlesInChecklist(String checklistName) {
         ElementsCollection collection = getSpecificChecklistName(checklistName).$$x(CHECKITEMS_NAMES_IN_CHECKLIST).shouldBe(sizeGreaterThan(0));
         return ElementUtil.getListOfStrings(collection);

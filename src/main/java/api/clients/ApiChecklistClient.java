@@ -45,4 +45,29 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .body()
                 .extract().as(CheckitemsResponse.class);
     }
+
+    @Step("Delete checklist with id: {checklistsId}. Expected status code{expectedStatusCode}")
+    public ChecklistResponse deleteChecklist(String IdChecklist, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .delete("/1/checklists/{id}", IdChecklist)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log().body()
+                .extract().as(ChecklistResponse.class);
+    }
+
+  //  @Step("Update existing checklist with id: {checklistId}. Expected status code: {expectedStatusCode}")
+  //  public Response updateChecklist(String checklistId, String checklistName, int expectedStatusCode) {
+   //     return given()
+         //       .spec(requestSpec)
+       //         .queryParam("name", checklistName)
+     //           .put("/1/checklists/{id}", checklistId)
+            //    .then()
+          //      .statusCode(expectedStatusCode)
+        //        .log()
+      //          .body()
+    //            .extract().as(Response.class);
+    //}
 }
