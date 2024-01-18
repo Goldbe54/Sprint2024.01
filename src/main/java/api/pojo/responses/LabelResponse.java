@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @JsonIgnoreProperties(ignoreUnknown = true)
 @AllArgsConstructor
 @NoArgsConstructor
-public class CheckitemsResponse {
-
-    private String id;
+public class LabelResponse {
     private String name;
-    private String state;
-    private String idChecklist;
+    private String color;
+    private String idBoard;
+    private String idCard;
+    private String id;
 }
