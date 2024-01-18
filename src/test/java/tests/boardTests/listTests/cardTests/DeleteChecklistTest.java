@@ -9,7 +9,6 @@ import api.pojo.requests.ListBuilder;
 import jdk.jfr.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
@@ -19,16 +18,16 @@ import java.util.List;
 import static com.codeborne.selenide.Selenide.refresh;
 
 public class DeleteChecklistTest extends TestInit {
-    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
-    private String checklistId, listId, cardId;
-    private static final BoardPage boardPage = new BoardPage();
     private final ApiChecklistClient apiChecklistClient = new ApiChecklistClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
+    private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
+    private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static final BoardPage boardPage = new BoardPage();
     private static final ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private static final ChecklistBuilder secondChecklistBody = ChecklistBuilder.builder().build();
-    private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private static final CardBuilder cardBody = CardBuilder.builder().build();
+    private String checklistId, listId, cardId;
 
     @BeforeMethod
     private void setUp() {
@@ -62,6 +61,5 @@ public class DeleteChecklistTest extends TestInit {
 
         softAssert.assertTrue(allCheckListsTitles.contains(secondChecklistName),
                 "Second checklist is not present after deletion of the first checklist");
-        softAssert.assertAll();
     }
 }
