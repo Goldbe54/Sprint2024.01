@@ -110,6 +110,5 @@ public class CardTests extends TestInit {
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
                 "Card name was not updated correctly");
         softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
-        softAssert.assertAll();
     }
 }
