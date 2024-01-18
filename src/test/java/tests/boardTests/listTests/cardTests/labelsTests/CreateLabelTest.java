@@ -35,7 +35,7 @@ public class CreateLabelTest extends TestInit {
     @Test(description = "Create label in card")
     @Description("PJ2024-19")
     public void createLabelTest() {
-        labelId = apiLabelClient.createNewLabel("LabelName", "red", boardId, 200).getId();
+        labelId = apiLabelClient.createNewLabel(labelName, "red", boardId, 200).getId();
         apiLabelClient.addLabelToCard(cardId, labelId, 200);
 
         String boardName = boardBody.getName();

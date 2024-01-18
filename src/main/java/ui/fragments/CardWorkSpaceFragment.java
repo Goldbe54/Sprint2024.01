@@ -43,7 +43,6 @@ public class CardWorkSpaceFragment {
         return rootElement().$$x(ALL_LABEL_TITLES).shouldBe(sizeGreaterThan(0));
     }
 
-
     public List<String> getLabelTitles() {
         ElementsCollection allLabelTitlesTitles = getAllLabelTitles();
         return ElementUtil.getListOfStrings(allLabelTitlesTitles);
