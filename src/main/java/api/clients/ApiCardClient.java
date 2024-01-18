@@ -10,7 +10,6 @@ import api.pojo.responses.CommentOnTheCardResponse;
 import io.qameta.allure.Step;
 
 import static io.restassured.RestAssured.given;
-import static java.lang.String.format;
 
 public class ApiCardClient extends BaseRestTestClient {
     public ApiCardClient(String url) {
@@ -38,7 +37,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(commentOnTheCardBuilder)
-                .post(format("/1/cards/%s/actions/comments", idCard))
+                .post("/1/cards/{id}/actions/comments", idCard)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
@@ -53,13 +52,28 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(attachmentOnCardBuilder)
-                .post(format("/1/cards/%s/attachments", idCard))
+                .post("/1/cards/{id}/attachments", idCard)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
                 .extract().as(AttachmentResponse.class);
     }
+
+    @Step("Move card with id: {cardId} to other list with id: {targetListId}. Expected status code {expectedStatusCode}")
+    public CardResponse moveCardsToAnotherList(String cardId, String targetListId, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("idList", targetListId)
+                .when()
+                .put("/1/cards/{id}", cardId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CardResponse.class);
+    }
+
     @Step("Edit card with id: {cardId}. Expected status code {expectedStatusCode}")
     public CardResponse editCard(String cardId, CardBuilder cardBody, int expectedStatusCode) {
         return given()

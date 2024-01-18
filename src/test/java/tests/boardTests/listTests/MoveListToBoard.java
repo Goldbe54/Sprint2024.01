@@ -1,6 +1,5 @@
 package tests.boardTests.listTests;
 
-import api.clients.ApiBoardClient;
 import api.clients.ApiListClient;
 import api.pojo.requests.BoardBuilder;
 import api.pojo.requests.ListBuilder;
@@ -16,6 +15,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class MoveListToBoard extends TestInit {
 
@@ -28,8 +28,8 @@ public class MoveListToBoard extends TestInit {
 
     @BeforeMethod
     public void createList() {
-        listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        secondBoardId = apiBoardClient.createNewBoard(secondBoardBody, 200).getId();
+        listId = apiListClient.createNewList(listBody, boardId, HTTP_OK).getId();
+        secondBoardId = apiBoardClient.createNewBoard(secondBoardBody, HTTP_OK).getId();
     }
 
     @Test(description = "Move list to board")
@@ -41,7 +41,7 @@ public class MoveListToBoard extends TestInit {
         String listName = listBody.getName();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
-        apiListClient.moveListInBoard(listId, secondBoardId, 200);
+        apiListClient.moveListInBoard(listId, secondBoardId, HTTP_OK);
         refresh();
 
         List<String> allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
@@ -58,6 +58,6 @@ public class MoveListToBoard extends TestInit {
 
     @AfterMethod
     public void closeBrowser() {
-        apiBoardClient.deleteExistingBoard(secondBoardId, 200);
+        apiBoardClient.deleteExistingBoard(secondBoardId, HTTP_OK);
     }
 }
