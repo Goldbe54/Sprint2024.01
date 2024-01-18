@@ -31,7 +31,6 @@ public class CardTests extends TestInit {
     @BeforeMethod
     private void setUp() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
     @Test(description = "Add a new card to the list")
@@ -90,6 +89,8 @@ public class CardTests extends TestInit {
     @Test(description = "3.5 Edit card at the board")
     @Description("PJ2024-32")
     public void editCardTest() {
+        String cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+
         String boardName = boardBody.getName();
         String listName = listBody.getName();
         String newCardName  = "Updated Name";

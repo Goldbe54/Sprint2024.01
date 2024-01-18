@@ -66,7 +66,7 @@ public class ApiCardClient extends BaseRestTestClient {
                 .spec(requestSpec)
                 .when()
                 .body(cardBody)
-                .put(format("/1/cards/%s", cardId))
+                .put("/1/cards/{1}", cardId)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
