@@ -17,8 +17,7 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
-
-public class CreateChecklistTest extends TestInit {
+public class UpdateCheckitemOnChecklistTest extends TestInit{
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
@@ -28,7 +27,7 @@ public class CreateChecklistTest extends TestInit {
     private static final CardBuilder cardBody = CardBuilder.builder().build();
     private static final ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private static final CheckitemBuilder checkItemBody = CheckitemBuilder.builder().build();
-    private String listId, cardId;
+    private String listId, cardId, checklistId, checkitemId;
 
     @BeforeMethod
     private void setUp() {
@@ -36,26 +35,28 @@ public class CreateChecklistTest extends TestInit {
         cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
-    @Test(description = "TC Create a Checklist with a Checkitem")
-    @Description("PJ2024-46")
-    public void createChecklistTest() {
-        List<String> checklistsTitles;
+    @Test(description = "Update checkitem on checklist")
+    @Description("PJ2024-54")
+     public void updateCheckitemOnChecklistTest(){
+        List<String> AllCheckitemTitles;
+        checklistId = apiChecklistClient.createNewChecklist(checklistBody, cardId, 200).getId();
+        checkitemId = apiChecklistClient.createNewCheckitem(checkItemBody, checklistId, 200).getId();
         String boardName = boardBody.getName();
         String listName = listBody.getName();
         String cardName = cardBody.getName();
         String checklistName = checklistBody.getName();
-        String checkitemName = checkItemBody.getName();
-        String checklistId = apiChecklistClient.createNewChecklist(checklistBody, cardId, 200).getId();
+        String newCheckitemName  = "Updated Checkitem";
 
-        apiChecklistClient.createNewCheckitem(checkItemBody, checklistId, 200);
+        CheckitemBuilder checkItemBody = CheckitemBuilder.builder().name(newCheckitemName).build();
 
+        apiChecklistClient.editCheckitem(cardId, checkitemId, checkItemBody, 200);
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,cardName).click();
 
-        checklistsTitles = boardPage.getCardFragment().getListCheckitemsTitlesInChecklist(checklistName);
+        AllCheckitemTitles = boardPage.getCardFragment().getListCheckitemsTitlesInChecklist(checklistName);
 
-        softAssert.assertTrue(checklistsTitles.stream().anyMatch(genre -> genre.equals(checkitemName))
-                ,"No such checkitem in checklist " + checklistName + ", with name: " + checkitemName);
+        softAssert.assertTrue(AllCheckitemTitles.stream().anyMatch(title -> title.equals(newCheckitemName)),
+                "Card name was not updated correctly");
     }
 }

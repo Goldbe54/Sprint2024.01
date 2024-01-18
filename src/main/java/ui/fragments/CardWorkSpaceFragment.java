@@ -34,6 +34,7 @@ public class CardWorkSpaceFragment {
     private SelenideElement getAttachmentSection() {
         return rootElement().$x(ATTACHMENT_SECTION).shouldBe(visible);
     }
+
     public SelenideElement getSelectedAttachment(String nameAttachment) {
         return getAttachmentSection().$x(format(SELECTED_ATTACHMENT, nameAttachment)).shouldBe(visible);
     }
