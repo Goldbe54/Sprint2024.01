@@ -14,6 +14,7 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class EditListAtTheBoard extends TestInit {
 
@@ -27,7 +28,7 @@ public class EditListAtTheBoard extends TestInit {
 
     @BeforeMethod
     public void createList() {
-        listId = apiListClient.createNewList(listBody, boardId, 200).getId();
+        listId = apiListClient.createNewList(listBody, boardId, HTTP_OK).getId();
     }
 
     @Test(description = "3.4 Edit list at the board")
@@ -41,11 +42,11 @@ public class EditListAtTheBoard extends TestInit {
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
-        String updatedListName = apiListClient.renameList(listId, "Updated List", 200).getName();
+        String updatedListName = apiListClient.renameList(listId, "Updated List", HTTP_OK).getName();
         refresh();
         allListTitles = boardPage.getBoardWorkSpaceFragment().getListTitles();
 
-        apiCardClient.createNewCard(cardBody, listId, 200);
+        apiCardClient.createNewCard(cardBody, listId, HTTP_OK);
 
         allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(updatedListName);
 

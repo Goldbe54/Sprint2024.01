@@ -5,11 +5,17 @@ import api.pojo.requests.BoardBuilder;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.WebDriverRunner;
 import io.qameta.allure.Step;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.asserts.SoftAssert;
 import ui.steps.PreLoginSteps;
+import utils.SuiteConfiguration;
+
+import java.io.IOException;
 
 import static com.codeborne.selenide.Selenide.open;
+import static java.net.HttpURLConnection.HTTP_OK;
 import static utils.ConfigProvider.EMAIL;
 import static utils.ConfigProvider.PASSWORD;
 
@@ -24,10 +30,11 @@ public class TestInit {
     protected String boardId;
 
     @Step("Preparing a browser for the test")
-    @Parameters({"browser"})
     @BeforeMethod
-    public void setup(@Optional("chrome") String browser) {
-        Configuration.browser = browser;
+    public void setup() throws IOException {
+        SuiteConfiguration conf = new SuiteConfiguration();
+
+        Configuration.browser = conf.getBrowserProperty();
         Configuration.baseUrl = BASE_URL;
         Configuration.reportsFolder = "./target";
         Configuration.downloadsFolder = "./target";
@@ -37,13 +44,13 @@ public class TestInit {
         open("/");
         WebDriverRunner.getWebDriver().manage().window().maximize();
         preLoginSteps.loginViaEmail(EMAIL, PASSWORD);
-        boardId = apiBoardClient.createNewBoard(boardBody, 200).getId();
+        boardId = apiBoardClient.createNewBoard(boardBody, HTTP_OK).getId();
     }
 
     @AfterMethod
     public void closeBrowser() {
         softAssert.assertAll();
-        apiBoardClient.deleteExistingBoard(boardId, 200);
+        apiBoardClient.deleteExistingBoard(boardId, HTTP_OK);
         WebDriverRunner.getWebDriver().quit();
     }
 }

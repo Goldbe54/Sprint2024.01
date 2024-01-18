@@ -26,7 +26,7 @@ public class CreateChecklistTest extends TestInit {
     private final ApiChecklistClient apiChecklistClient = new ApiChecklistClient(BASE_URL);
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private static final CardBuilder cardBody = CardBuilder.builder().build();
-    private static final CheckitemBuilder checkitemBody = CheckitemBuilder.builder().build();
+    private static final CheckitemBuilder checkItemBody = CheckitemBuilder.builder().build();
     private static final ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private String listId, cardId;
 
@@ -44,10 +44,10 @@ public class CreateChecklistTest extends TestInit {
         String listName = listBody.getName();
         String cardName = cardBody.getName();
         String checklistName = checklistBody.getName();
-        String checkitemName = checkitemBody.getName();
+        String checkitemName = checkItemBody.getName();
         String checklistId = apiChecklistClient.createNewChecklist(checklistBody, cardId, 200).getId();
 
-        apiChecklistClient.createNewCheckitem(checkitemBody, checklistId, 200);
+        apiChecklistClient.createNewCheckitem(checkItemBody, checklistId, 200);
 
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
