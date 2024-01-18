@@ -12,7 +12,7 @@ public class ApiLabelClient extends BaseRestTestClient {
         super(url);
     }
 
-    @Step("Create new label. Expected status code {expectedStatusCode}")
+    @Step("Create new label with name {labelName} and with id {idLabel}. Expected status code {expectedStatusCode}")
     public LabelResponse createNewLabel(String labelName, String labelColor, String idBoard, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
@@ -26,7 +26,7 @@ public class ApiLabelClient extends BaseRestTestClient {
                 .log().body().extract().as(LabelResponse.class);
     }
 
-    @Step("Add a Label to a Card. String idCard {idCard}. String idLabel{idLabel.} Expected status code {expectedStatusCode}")
+    @Step("Add a Label with id: {idLabel} to Card with id: {idCard}. Expected status code {expectedStatusCode}")
     public Response addLabelToCard(String idCard, String idLabel, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)

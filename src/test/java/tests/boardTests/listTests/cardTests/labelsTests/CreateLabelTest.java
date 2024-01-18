@@ -44,7 +44,7 @@ public class CreateLabelTest extends TestInit {
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        allLabelTitles = boardPage.getCardFragment().getLableTitles();
+        allLabelTitles = boardPage.getCardFragment().getLabelTitles();
 
         softAssert.assertTrue(allLabelTitles.stream().anyMatch(genre -> genre.equals(labelName)),
                 "No such label with name: " + labelName);
