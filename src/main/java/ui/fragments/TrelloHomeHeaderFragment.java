@@ -14,6 +14,7 @@ public class TrelloHomeHeaderFragment {
 
     private static final String SEARCH_FIELD = ".//input";
     private static final String SEARCH_RESULTS_TITLES = ".//a[@data-testid='cross-product-search-result']//span[not(@*)]";
+
     private SelenideElement rootElement() {
         return $x("//div[@data-testid='header-container']");
     }
