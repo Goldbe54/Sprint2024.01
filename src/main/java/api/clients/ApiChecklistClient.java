@@ -44,7 +44,7 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .extract().as(CheckitemsResponse.class);
     }
 
-    @Step("Edit checkitem on card with id: {idCard}. Expected status code {expectedStatusCode} ")
+    @Step("Edit checkitem with id: {idCard} ")
     public CheckitemsResponse editCheckitem(String idCard, String idCheckItem, CheckitemBuilder checkItemBody, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)

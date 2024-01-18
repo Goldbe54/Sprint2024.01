@@ -17,7 +17,7 @@ import ui.pages.TrelloHomePage;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
-public class UpdateCheckitemOnChecklistTest extends TestInit{
+public class UpdateCheckitemTest extends TestInit{
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
@@ -57,6 +57,6 @@ public class UpdateCheckitemOnChecklistTest extends TestInit{
         AllCheckitemTitles = boardPage.getCardFragment().getListCheckitemsTitlesInChecklist(checklistName);
 
         softAssert.assertTrue(AllCheckitemTitles.stream().anyMatch(title -> title.equals(newCheckitemName)),
-                "Card name was not updated correctly");
+                "Expected name" + newCheckitemName);
     }
 }
