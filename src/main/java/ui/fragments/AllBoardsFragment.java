@@ -18,6 +18,7 @@ public class AllBoardsFragment {
     private static final String SPECIAL_BOARD_TITLE = ".//div[@class='board-tile-details-name']/div[contains(text(),'%s')]";
     private static final String YOUR_WORKSPACE = ".//h3[text()='YOUR WORKSPACES']/..";
     private static final String ALL_BOARDS = ".//div[@class='board-tile-details-name']";
+    private static final String VIEW_ALL_CLOSED_BOARDS = ".//button[contains(@class,'view-all-closed-boards-button')]";
 
     private SelenideElement rootElement() {
         return $x("//div[@class='all-boards']");
@@ -48,5 +49,9 @@ public class AllBoardsFragment {
     public List<String> getBoardsTitlesElements() {
         ElementsCollection allBoardsList = getAllBoardsInWorkspace();
         return ElementUtil.getListOfStrings(allBoardsList);
+    }
+
+    public void clickAllClosedBoards() {
+        rootElement().$x(VIEW_ALL_CLOSED_BOARDS).shouldBe(visible).click();
     }
 }
