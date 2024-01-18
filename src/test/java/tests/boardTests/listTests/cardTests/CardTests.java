@@ -22,7 +22,7 @@ public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
     private static final ListBuilder listBody = ListBuilder.builder().build();
-    private static final CardBuilder cardBody = CardBuilder.builder().build();
+    private static CardBuilder cardBody = CardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
     private String listId;
@@ -119,7 +119,7 @@ public class CardTests extends TestInit {
         String newCardName  = "Updated Name";
         String newCardDesc  = "Updated description";
 
-        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+        cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
 
         apiCardClient.editCard(cardId, cardBody, 200);
         refresh();
