@@ -13,4 +13,6 @@ public class LabelResponse {
     private String name;
     private String color;
     private String idBoard;
+    private String idCard;
+    private String id;
 }

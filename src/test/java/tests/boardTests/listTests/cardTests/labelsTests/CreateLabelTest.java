@@ -23,31 +23,30 @@ public class CreateLabelTest extends TestInit {
     private static final CardBuilder cardBody = CardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
-    private String listId;
-    private String labelName;
+    private String listId, labelId, cardId;
+    private String labelName = "LabelName";
 
     @BeforeMethod
     public void createBoardAttachments() {
         listId = apiListClient.createNewList(listBody, boardId, 200).getId();
-        apiCardClient.createNewCard(cardBody, listId, 200);
+        cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
     }
 
     @Test(description = "Create label in card")
     @Description("PJ2024-19")
-    public void createLabelTest(){
-         labelName =apiLabelClient.createNewLabel("LabelName", "red", boardId, 200).getName();
+    public void createLabelTest() {
+        labelId = apiLabelClient.createNewLabel("LabelName", "red", boardId, 200).getId();
+        apiLabelClient.addLabelToCard(cardId, labelId, 200);
 
         String boardName = boardBody.getName();
-
-
-        List<String> allLableTitles;
+        List<String> allLabelTitles;
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
-        //не клікнула по карді,виправ. Перейшла на бурду , але не знаходишся на карді,щоб витягувати нейми лейблів. Втомилась
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        allLableTitles = boardPage.getCardFragment().getLableTitles();
+        allLabelTitles = boardPage.getCardFragment().getLableTitles();
 
-        softAssert.assertTrue(allLableTitles.stream().anyMatch(genre -> genre.equals(labelName)),
-                "No such card with name: " + labelName);
+        softAssert.assertTrue(allLabelTitles.stream().anyMatch(genre -> genre.equals(labelName)),
+                "No such label with name: " + labelName);
     }
 }
