@@ -55,4 +55,17 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .log().body()
                 .extract().as(ChecklistResponse.class);
     }
+
+    @Step("Edit checkitem with id: {idCard} ")
+    public CheckItemsResponse editCheckitem(String idCard, String idCheckItem, CheckitemBuilder checkItemBody, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .body(checkItemBody)
+                .put("/1/cards/{idCard}/checkItem/{idCheckItem}", idCard, idCheckItem)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CheckItemsResponse.class);
+    }
 }
