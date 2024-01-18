@@ -38,7 +38,7 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .queryParam("idCard", idChecklist)
                 .when()
                 .body(checkitemBuilder)
-                .post(format("/1/checklists/%s/checkItems",idChecklist))
+                .post(format("/1/checklists/%s/checkItems", idChecklist))
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
@@ -57,17 +57,4 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .log().body()
                 .extract().as(ChecklistResponse.class);
     }
-
-  //  @Step("Update existing checklist with id: {checklistId}. Expected status code: {expectedStatusCode}")
-  //  public Response updateChecklist(String checklistId, String checklistName, int expectedStatusCode) {
-   //     return given()
-         //       .spec(requestSpec)
-       //         .queryParam("name", checklistName)
-     //           .put("/1/checklists/{id}", checklistId)
-            //    .then()
-          //      .statusCode(expectedStatusCode)
-        //        .log()
-      //          .body()
-    //            .extract().as(Response.class);
-    //}
 }
