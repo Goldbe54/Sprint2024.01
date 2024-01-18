@@ -37,11 +37,23 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .queryParam("idCard", idChecklist)
                 .when()
                 .body(checkitemBuilder)
-                .post(format("/1/checklists/%s/checkItems",idChecklist))
+                .post("/1/checklists/{id}/checkItems",idChecklist)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
                 .extract().as(CheckItemsResponse.class);
+    }
+
+    @Step("Delete checklist with id: {checklistsId}. Expected status code{expectedStatusCode}")
+    public ChecklistResponse deleteChecklist(String IdChecklist, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .delete("/1/checklists/{id}", IdChecklist)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log().body()
+                .extract().as(ChecklistResponse.class);
     }
 }

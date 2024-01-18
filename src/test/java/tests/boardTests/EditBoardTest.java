@@ -1,6 +1,5 @@
 package tests.boardTests;
 
-import api.clients.ApiBoardClient;
 import jdk.jfr.Description;
 import org.testng.annotations.Test;
 import tests.TestInit;
@@ -10,6 +9,7 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.back;
 import static com.codeborne.selenide.Selenide.refresh;
+import static java.net.HttpURLConnection.HTTP_OK;
 
 public class EditBoardTest extends TestInit {
 
@@ -23,7 +23,7 @@ public class EditBoardTest extends TestInit {
         String boardName = boardBody.getName();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
-        apiBoardClient.updateBoardName(boardId, updatedName, 200).getName();
+        apiBoardClient.updateBoardName(boardId, updatedName, HTTP_OK);
 
         back();
         refresh();
