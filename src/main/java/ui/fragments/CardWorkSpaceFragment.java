@@ -6,9 +6,8 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
 
@@ -22,7 +21,7 @@ public class CardWorkSpaceFragment {
     private static final String SPECIFIC_CHECKLIST_TITLE = ".//h3[text()='%s']";
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
     private static final String ALL_LABEL_TITLES = ".//span[@data-testid='card-label']";
-
+    private static final String LABELS_CONTAINER = ".//div[@data-testid='card-back-labels-container']/span";
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
     }
@@ -47,6 +46,16 @@ public class CardWorkSpaceFragment {
         ElementsCollection allLabelTitlesTitles = getAllLabelTitles();
         return ElementUtil.getListOfStrings(allLabelTitlesTitles);
     }
+
+    public boolean isLabelsAbsent() {
+        try {
+            rootElement().$x(LABELS_CONTAINER).shouldBe(disappear);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
 
     public SelenideElement getSelectedAttachment(String nameAttachment) {
         return getAttachmentSection().$x(format(SELECTED_ATTACHMENT, nameAttachment)).shouldBe(visible);
