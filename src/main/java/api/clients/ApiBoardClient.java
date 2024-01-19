@@ -51,4 +51,18 @@ public class ApiBoardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(BoardResponse.class);
     }
+
+    @Step("Open or close board with id: {boardId}. Expected status code: {expectedStatusCode}")
+    public BoardResponse doOpenOrCloseExistBoard(String boardId,BoardBuilder boardBody, boolean openOrClose, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("closed", openOrClose)
+                .body(boardBody)
+                .put("/1/boards/{id}", boardId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(BoardResponse.class);
+    }
 }

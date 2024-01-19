@@ -27,6 +27,8 @@ public class CardTests extends TestInit {
     private static final BoardPage boardPage = new BoardPage();
     private String listId;
 
+    List<String> allCardsTitles;
+
     @BeforeMethod
     private void setUp() {
         listId = apiListClient.createNewList(listBody, boardId, HTTP_OK).getId();
@@ -105,6 +107,33 @@ public class CardTests extends TestInit {
 
         softAssert.assertTrue(enableCardOnInitialList, "The card with name: " + cardName + "does not exist in this list with name " + listName);
         softAssert.assertTrue(enableCardOnTargetList, "The card with name: " + cardName + "does not exist in this list with name " + customListName);
+    }
+
+    @Test(description = "3.5 Edit card at the board")
+    @Description("PJ2024-32")
+    public void editCardTest() {
+        String cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+
+        String boardName = boardBody.getName();
+        String listName = listBody.getName();
+        String newCardName  = "Updated Name";
+        String newCardDesc  = "Updated description";
+
+        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+
+        apiCardClient.editCard(cardId, cardBody, 200);
+        refresh();
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
+
+        allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
+
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,newCardName).click();
+
+        String checkedCardDesc = boardPage.getCardFragment().getCardDescription().getText();
+
+        softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
+                "Card name was not updated correctly");
+        softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
     }
 
     @Test(description = " 6.1. Search by the content of boards and cards")

@@ -3,7 +3,7 @@ package api.clients;
 import api.BaseRestTestClient;
 import api.pojo.requests.CheckitemBuilder;
 import api.pojo.requests.ChecklistBuilder;
-import api.pojo.responses.CheckitemsResponse;
+import api.pojo.responses.CheckItemsResponse;
 import api.pojo.responses.ChecklistResponse;
 import io.qameta.allure.Step;
 
@@ -30,17 +30,42 @@ public class ApiChecklistClient extends BaseRestTestClient {
     }
 
     @Step("Create checkitem on checklist with id: {idChecklist}. Expected status code {expectedStatusCode} ")
-    public CheckitemsResponse createNewCheckitem(CheckitemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
+    public CheckItemsResponse createNewCheckitem(CheckitemBuilder checkitemBuilder, String idChecklist, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .queryParam("idCard", idChecklist)
                 .when()
                 .body(checkitemBuilder)
-                .post("/1/checklists/{id}/checkItems",idChecklist)
+                .post("/1/checklists/{id}/checkItems", idChecklist)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()
                 .body()
-                .extract().as(CheckitemsResponse.class);
+                .extract().as(CheckItemsResponse.class);
+    }
+
+    @Step("Delete checklist with id: {checklistsId}. Expected status code{expectedStatusCode}")
+    public ChecklistResponse deleteChecklist(String IdChecklist, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .delete("/1/checklists/{id}", IdChecklist)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log().body()
+                .extract().as(ChecklistResponse.class);
+    }
+
+    @Step("Edit checkitem with id: {idCard} ")
+    public CheckItemsResponse editCheckitem(String idCard, String idCheckItem, CheckitemBuilder checkItemBody, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .body(checkItemBody)
+                .put("/1/cards/{idCard}/checkItem/{idCheckItem}", idCard, idCheckItem)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CheckItemsResponse.class);
     }
 }
