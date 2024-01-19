@@ -58,7 +58,7 @@ public class CardTests extends TestInit {
     public void addCommentToTheCard() {
         CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
         String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
-        apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
 
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, HTTP_OK);
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
@@ -94,7 +94,7 @@ public class CardTests extends TestInit {
         String cardName = cardBody.getName();
         String listName = listBody.getName();
         String customListName = customBodyList.getName();
-        apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
         String targetListId = apiListClient.createNewList(customBodyList, boardId, HTTP_OK).getId();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
@@ -112,7 +112,7 @@ public class CardTests extends TestInit {
     @Test(description = "3.5 Edit card at the board")
     @Description("PJ2024-32")
     public void editCardTest() {
-        apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
@@ -139,7 +139,7 @@ public class CardTests extends TestInit {
     @Test(description = "Checking the card archiving")
     @Description("PJ2024-53")
     public void archiveTheCardTest() {
-        apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
         cardBody = CardBuilder.builder().closed(true).build();
         String cardName = cardBody.getName();
         List<String> archivedTitles;
@@ -161,7 +161,7 @@ public class CardTests extends TestInit {
         String cardName = cardBody.getName();
         List<String> searchBoardResult, searchCardResult;
 
-        apiCardClient.createNewCard(cardBody,listId,HTTP_OK);
+        apiCardClient.createNewCard(cardBody, listId, HTTP_OK);
         refresh();
         trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
 
@@ -173,15 +173,15 @@ public class CardTests extends TestInit {
         searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
 
         softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
-                ,"No such result with name: " + boardName);
+                , "No such result with name: " + boardName);
         softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
-                ,"No such result with name: " + cardName);
+                , "No such result with name: " + cardName);
     }
 
     @Test(description = "Delete attachment on card")
     @Description("PJ2024-43")
-    public void deleteExistingAttachment(){
-        idCard = apiCardClient.createNewCard(cardBody,listId,HTTP_OK).getId();
+    public void deleteExistingAttachment() {
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
         String boardName = boardBody.getName();
         List<String> allAttachmentTitle;
 
@@ -196,7 +196,7 @@ public class CardTests extends TestInit {
 
         String attachmentName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
 
-        apiCardClient.deleteExistingAttachment(idCard,idAttachment, HTTP_OK);
+        apiCardClient.deleteExistingAttachment(idCard, idAttachment, HTTP_OK);
         refresh();
         softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentName)),
                 "Is attachment with name: " + attachmentName);
