@@ -22,6 +22,8 @@ public class CardWorkSpaceFragment {
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
     private static final String ALL_LABEL_TITLES = ".//span[@data-testid='card-label']";
     private static final String LABELS_CONTAINER = ".//div[@data-testid='card-back-labels-container']/span";
+    private static final String ALL_ATTACHMENT_TITLES = ".//span[@class='attachment-thumbnail-name']";
+
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
     }
@@ -40,6 +42,15 @@ public class CardWorkSpaceFragment {
 
     private ElementsCollection getAllLabelTitles() {
         return rootElement().$$x(ALL_LABEL_TITLES).shouldBe(sizeGreaterThan(0));
+    }
+
+    public ElementsCollection getAllAttachmentTitles(){
+        return rootElement().$$x(ALL_ATTACHMENT_TITLES).shouldBe(sizeGreaterThan(0));
+    }
+
+    public List<String> getAttachmentTitles(){
+        ElementsCollection allAttachmentTitles = getAllAttachmentTitles();
+        return ElementUtil.getListOfStrings(allAttachmentTitles);
     }
 
     public List<String> getLabelTitles() {
