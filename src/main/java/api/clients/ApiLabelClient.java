@@ -23,7 +23,10 @@ public class ApiLabelClient extends BaseRestTestClient {
                 .post("/1/labels")
                 .then()
                 .statusCode(expectedStatusCode)
-                .log().body().extract().as(LabelResponse.class);
+                .log()
+                .body()
+                .extract()
+                .as(LabelResponse.class);
     }
 
     @Step("Add a Label with id: {idLabel} to Card with id: {idCard}. Expected status code {expectedStatusCode}")
@@ -33,6 +36,17 @@ public class ApiLabelClient extends BaseRestTestClient {
                 .queryParam("value", idLabel)
                 .when()
                 .post("/1/cards/{id}/idLabels", idCard)
+                .then()
+                .statusCode(expectedStatusCode)
+                .extract()
+                .response();
+    }
+    @Step("Delete a Label by cardId: {idCard} and labelId {idLabel}")
+    public Response deleteLabel(String idCard, String idLabel, int expectedStatusCode){
+        return given()
+                .spec(requestSpec)
+                .when()
+                .delete("/1/cards/{idCard}/idLabels/{idLabel}", idCard, idLabel)
                 .then()
                 .statusCode(expectedStatusCode)
                 .extract()

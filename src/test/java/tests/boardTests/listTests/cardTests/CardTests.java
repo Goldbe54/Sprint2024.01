@@ -24,10 +24,10 @@ public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
     private static final ListBuilder listBody = ListBuilder.builder().build();
-    private static final CardBuilder cardBody = CardBuilder.builder().build();
+    private static CardBuilder cardBody = CardBuilder.builder().build();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
     private static final BoardPage boardPage = new BoardPage();
-    private String listId;
+    private String listId, idCard;
 
     List<String> allCardsTitles;
 
@@ -60,7 +60,7 @@ public class CardTests extends TestInit {
     public void addCommentToTheCard() {
         CommentOnTheCardBuilder commentOnTheCardBuilder = CommentOnTheCardBuilder.builder().build();
         String initialCommentOnTheCard = commentOnTheCardBuilder.getText();
-        String idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
 
         apiCardClient.createCommentOnTheCard(commentOnTheCardBuilder, idCard, HTTP_OK);
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
@@ -77,7 +77,7 @@ public class CardTests extends TestInit {
     public void addAttachmentOnCard() {
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
 
-        String idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
         String nameInitialAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, HTTP_OK).getName();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
@@ -96,7 +96,7 @@ public class CardTests extends TestInit {
         String cardName = cardBody.getName();
         String listName = listBody.getName();
         String customListName = customBodyList.getName();
-        String idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
         String targetListId = apiListClient.createNewList(customBodyList, boardId, HTTP_OK).getId();
 
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
@@ -114,16 +114,16 @@ public class CardTests extends TestInit {
     @Test(description = "3.5 Edit card at the board")
     @Description("PJ2024-32")
     public void editCardTest() {
-        String cardId = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        idCard = apiCardClient.createNewCard(cardBody, listId, 200).getId();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
         String newCardName = "Updated Name";
         String newCardDesc = "Updated description";
 
-        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+        cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
 
-        apiCardClient.editCard(cardId, cardBody, HTTP_OK);
+        apiCardClient.updateCard(idCard, cardBody, 200);
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
@@ -136,6 +136,72 @@ public class CardTests extends TestInit {
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
                 "Card name was not updated correctly");
         softAssert.assertEquals(newCardDesc, checkedCardDesc, "Card description was not updated correctly");
+    }
+
+    @Test(description = "Checking the card archiving")
+    @Description("PJ2024-53")
+    public void archiveTheCardTest() {
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        cardBody = CardBuilder.builder().closed(true).build();
+        String cardName = cardBody.getName();
+        List<String> archivedTitles;
+
+        apiCardClient.updateCard(idCard, cardBody, HTTP_OK);
+        refresh();
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+
+        archivedTitles = boardPage.getListOfAllArchivedTitles();
+
+        softAssert.assertTrue(archivedTitles.stream().anyMatch(title -> title.equals(cardName)),
+                "The card with name: " + cardName + "does not exist in archived list");
+    }
+
+    @Test(description = " 6.1. Search by the content of boards and cards")
+    @Description("PJ2024-20")
+    public void searchByContent() {
+        String boardName = boardBody.getName();
+        String cardName = cardBody.getName();
+        List<String> searchBoardResult, searchCardResult;
+
+        apiCardClient.createNewCard(cardBody, listId, HTTP_OK);
+        refresh();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
+
+        searchBoardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().clear();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(cardName);
+
+        searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
+                , "No such result with name: " + boardName);
+        softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
+                , "No such result with name: " + cardName);
+    }
+
+    @Test(description = "Delete attachment on card")
+    @Description("PJ2024-43")
+    public void deleteExistingAttachment() {
+        idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        String boardName = boardBody.getName();
+        List<String> allAttachmentTitle;
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
+
+        AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
+        String idAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, HTTP_OK).getId();
+        AttachmentBuilder secondAttachmentBody = AttachmentBuilder.builder().build();
+
+        apiCardClient.createAttachmentOnCard(secondAttachmentBody, idCard, HTTP_OK);
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+        apiCardClient.deleteExistingAttachment(idCard, idAttachment, HTTP_OK);
+        refresh();
+
+        allAttachmentTitle = boardPage.getCardFragment().getAttachmentTitles();
+
+        softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentBody.getName())),
+                "Attachment with name: " + attachmentBody.getName() + "does not deleted");
     }
 
     @Test(description = "Check adding data in Card")

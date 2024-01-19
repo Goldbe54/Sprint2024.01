@@ -75,12 +75,25 @@ public class ApiCardClient extends BaseRestTestClient {
     }
 
     @Step("Edit card with id: {cardId}. Expected status code {expectedStatusCode}")
-    public CardResponse editCard(String cardId, CardBuilder cardBody, int expectedStatusCode) {
+    public CardResponse updateCard(String cardId, CardBuilder cardBody, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .when()
                 .body(cardBody)
                 .put("/1/cards/{1}", cardId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CardResponse.class);
+    }
+
+    @Step("Delete attachment with id: {idAttachment} at the card with id: {idCard}. Expected status code {expectedStatusCode}")
+    public CardResponse deleteExistingAttachment(String cardId, String idAttachment, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .delete("/1/cards/{id}/attachments/{idAttachment}", cardId,  idAttachment)
                 .then()
                 .statusCode(expectedStatusCode)
                 .log()

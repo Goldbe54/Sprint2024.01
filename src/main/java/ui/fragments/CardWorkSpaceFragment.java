@@ -7,11 +7,9 @@ import utils.ElementUtil;
 import java.util.List;
 
 import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
-import static com.codeborne.selenide.Condition.exist;
-import static com.codeborne.selenide.Condition.visible;
+import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
-import static java.nio.file.Files.getAttribute;
 
 public class CardWorkSpaceFragment {
 
@@ -23,6 +21,8 @@ public class CardWorkSpaceFragment {
     private static final String SPECIFIC_CHECKLIST_TITLE = ".//h3[text()='%s']";
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
     private static final String ALL_LABEL_TITLES = ".//span[@data-testid='card-label']";
+    private static final String LABELS_CONTAINER = ".//div[@data-testid='card-back-labels-container']/span";
+    private static final String ALL_ATTACHMENT_TITLES = ".//span[@class='attachment-thumbnail-name']";
     private static final String CHECKBOX_COMPLETE_DATES = ".//a[@aria-label='Mark due date as complete']";
     private static final String DATA_ABOUT_DUE_DATE = ".//div[contains(@class,'card-detail-badge-due')]";
 
@@ -46,9 +46,27 @@ public class CardWorkSpaceFragment {
         return rootElement().$$x(ALL_LABEL_TITLES).shouldBe(sizeGreaterThan(0));
     }
 
+    public ElementsCollection getAllAttachmentTitles(){
+        return rootElement().$$x(ALL_ATTACHMENT_TITLES).shouldBe(sizeGreaterThan(0));
+    }
+
+    public List<String> getAttachmentTitles(){
+        ElementsCollection allAttachmentTitles = getAllAttachmentTitles();
+        return ElementUtil.getListOfStrings(allAttachmentTitles);
+    }
+
     public List<String> getLabelTitles() {
         ElementsCollection allLabelTitlesTitles = getAllLabelTitles();
         return ElementUtil.getListOfStrings(allLabelTitlesTitles);
+    }
+
+    public boolean isLabelsAbsent() {
+        try {
+            rootElement().$x(LABELS_CONTAINER).shouldBe(disappear);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 
     public SelenideElement getSelectedAttachment(String nameAttachment) {

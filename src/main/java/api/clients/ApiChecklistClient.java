@@ -68,4 +68,17 @@ public class ApiChecklistClient extends BaseRestTestClient {
                 .body()
                 .extract().as(CheckItemsResponse.class);
     }
+
+    @Step("Update existing checklist with id: {checklistId}. Expected status code: {expectedStatusCode}")
+    public ChecklistResponse updateChecklist(String checklistId, String checklistName, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .queryParam("name", checklistName)
+                .put("/1/checklists/{id}", checklistId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(ChecklistResponse.class);
+    }
 }

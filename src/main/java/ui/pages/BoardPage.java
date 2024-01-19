@@ -1,9 +1,13 @@
 package ui.pages;
 
+import com.codeborne.selenide.ElementsCollection;
 import lombok.Getter;
 import ui.common.BasePage;
+import ui.fragments.BoardHeaderFragment;
+import ui.fragments.BoardMenuFragment;
 import ui.fragments.BoardWorkSpaceFragment;
 import ui.fragments.CardWorkSpaceFragment;
+import utils.ElementUtil;
 import utils.Month;
 
 import java.util.ArrayList;
@@ -15,6 +19,21 @@ public class BoardPage extends BasePage {
     private final BoardWorkSpaceFragment boardWorkSpaceFragment = new BoardWorkSpaceFragment();
     @Getter
     private final CardWorkSpaceFragment cardFragment = new CardWorkSpaceFragment();
+    @Getter
+    private final BoardMenuFragment boardMenuFragment = new BoardMenuFragment();
+    @Getter
+    private final BoardHeaderFragment boardHeaderFragment = new BoardHeaderFragment();
+
+    public List<String> getListOfAllArchivedTitles() {
+        boardHeaderFragment.getBoardMenuFragment().click();
+        boardMenuFragment.getBackButton().click();
+        boardMenuFragment.getArchiveButton().click();
+
+        ElementsCollection collection = boardMenuFragment.getAllArchivedTitles();
+
+        return ElementUtil.getListOfStrings(collection);
+    }
+
 
     public boolean isCompleteCheckboxDates() {
         return Boolean.parseBoolean(cardFragment.getCheckboxCompleteDates().getAttribute("aria-checked"));
@@ -35,7 +54,7 @@ public class BoardPage extends BasePage {
         return result;
     }
 
-    public boolean isValidDates(int due, int start,Month monthDue,Month monthStart) {
+    public boolean isValidDates(int due, int start, Month monthDue, Month monthStart) {
         List<String> aa = getSetMonth(getCardFragment().getDataAboutDueDate().getText());
         Month dueMonth = Month.valueOf(aa.get(2));
         int dueDay = Integer.parseInt(aa.get(3));
