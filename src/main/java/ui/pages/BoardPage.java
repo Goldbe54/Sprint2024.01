@@ -26,7 +26,9 @@ public class BoardPage extends BasePage {
         boardHeaderFragment.getBoardMenuFragment().click();
         boardMenuFragment.getBackButton().click();
         boardMenuFragment.getArchiveButton().click();
+
         ElementsCollection collection = boardMenuFragment.getAllArchivedTitles();
+
         return ElementUtil.getListOfStrings(collection);
     }
 
