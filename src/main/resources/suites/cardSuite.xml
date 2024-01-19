@@ -14,6 +14,12 @@
                     <include name="createCardTest"/>
                     <include name="addCommentToTheCard"/>
                     <include name="addAttachmentOnCard"/>
+                    <include name="movingCardsBetweenLists"/>
+                    <include name="editCardTest"/>
+                    <include name="archiveTheCardTest"/>
+                    <include name="searchByContent"/>
+                    <include name="deleteExistingAttachment"/>
+                    <include name="addDateToTheCard"/>
                 </methods>
             </class>
         </classes>
