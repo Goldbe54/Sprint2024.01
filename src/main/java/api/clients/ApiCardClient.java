@@ -75,7 +75,7 @@ public class ApiCardClient extends BaseRestTestClient {
     }
 
     @Step("Edit card with id: {cardId}. Expected status code {expectedStatusCode}")
-    public CardResponse editCard(String cardId, CardBuilder cardBody, int expectedStatusCode) {
+    public CardResponse updateCard(String cardId, CardBuilder cardBody, int expectedStatusCode) {
         return given()
                 .spec(requestSpec)
                 .when()

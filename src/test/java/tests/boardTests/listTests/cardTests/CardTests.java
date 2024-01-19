@@ -116,23 +116,65 @@ public class CardTests extends TestInit {
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
-        String newCardName  = "Updated Name";
-        String newCardDesc  = "Updated description";
+        String newCardName = "Updated Name";
+        String newCardDesc = "Updated description";
 
         cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
 
-        apiCardClient.editCard(cardId, cardBody, 200);
+        apiCardClient.updateCard(cardId, cardBody, 200);
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
         allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
 
-        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,newCardName).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName, newCardName).click();
 
         String checkedCardDesc = boardPage.getCardFragment().getCardDescription().getText();
 
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
                 "Card name was not updated correctly");
-        softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
+        softAssert.assertEquals(newCardDesc, checkedCardDesc, "Card description was not updated correctly");
+    }
+
+    @Test(description = "Checking the card archiving")
+    @Description("PJ2024-53")
+    public void archiveTheCardTest() {
+        String idCard = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        cardBody = CardBuilder.builder().closed(true).build();
+        String cardName = cardBody.getName();
+        List<String> archivedTitles;
+
+        apiCardClient.updateCard(idCard, cardBody, HTTP_OK);
+        refresh();
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+
+        archivedTitles = boardPage.getListOfAllArchivedTitles();
+
+        softAssert.assertTrue(archivedTitles.stream().anyMatch(title -> title.equals(cardName)),
+                "The card with name: " + cardName + "does not exist in archived list");
+    }
+
+    @Test(description = " 6.1. Search by the content of boards and cards")
+    @Description("PJ2024-20")
+    public void searchByContent() {
+        String boardName = boardBody.getName();
+        String cardName = cardBody.getName();
+        List<String> searchBoardResult, searchCardResult;
+
+        apiCardClient.createNewCard(cardBody,listId,HTTP_OK);
+        refresh();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
+
+        searchBoardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().clear();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(cardName);
+
+        searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
+                ,"No such result with name: " + boardName);
+        softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
+                ,"No such result with name: " + cardName);
     }
 }
