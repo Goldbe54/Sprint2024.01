@@ -135,4 +135,28 @@ public class CardTests extends TestInit {
                 "Card name was not updated correctly");
         softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
     }
+
+    @Test(description = " 6.1. Search by the content of boards and cards")
+    @Description("PJ2024-20")
+    public void searchByContent() {
+        String boardName = boardBody.getName();
+        String cardName = cardBody.getName();
+        List<String> searchBoardResult, searchCardResult;
+
+        apiCardClient.createNewCard(cardBody,listId,HTTP_OK);
+        refresh();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
+
+        searchBoardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().clear();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(cardName);
+
+        searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
+                ,"No such result with name: " + boardName);
+        softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
+                ,"No such result with name: " + cardName);
+    }
 }
