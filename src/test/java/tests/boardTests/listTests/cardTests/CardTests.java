@@ -119,7 +119,7 @@ public class CardTests extends TestInit {
         String newCardName = "Updated Name";
         String newCardDesc = "Updated description";
 
-        CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
+        cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
 
         apiCardClient.updateCard(cardId, cardBody, 200);
         refresh();
