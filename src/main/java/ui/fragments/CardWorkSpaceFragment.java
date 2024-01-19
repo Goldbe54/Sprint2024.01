@@ -6,7 +6,7 @@ import utils.ElementUtil;
 
 import java.util.List;
 
-import static com.codeborne.selenide.CollectionCondition.*;
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThan;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
@@ -23,6 +23,8 @@ public class CardWorkSpaceFragment {
     private static final String ALL_LABEL_TITLES = ".//span[@data-testid='card-label']";
     private static final String LABELS_CONTAINER = ".//div[@data-testid='card-back-labels-container']/span";
     private static final String ALL_ATTACHMENT_TITLES = ".//span[@class='attachment-thumbnail-name']";
+    private static final String CHECKBOX_COMPLETE_DATES = ".//a[@aria-label='Mark due date as complete']";
+    private static final String DATA_ABOUT_DUE_DATE = ".//div[contains(@class,'card-detail-badge-due')]";
 
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
@@ -67,7 +69,6 @@ public class CardWorkSpaceFragment {
         }
     }
 
-
     public SelenideElement getSelectedAttachment(String nameAttachment) {
         return getAttachmentSection().$x(format(SELECTED_ATTACHMENT, nameAttachment)).shouldBe(visible);
     }
@@ -88,5 +89,13 @@ public class CardWorkSpaceFragment {
     public List<String> getListCheckitemsTitlesInChecklist(String checklistName) {
         ElementsCollection collection = getSpecificChecklistName(checklistName).$$x(CHECKITEMS_NAMES_IN_CHECKLIST).shouldBe(sizeGreaterThan(0));
         return ElementUtil.getListOfStrings(collection);
+    }
+
+    public SelenideElement getCheckboxCompleteDates() {
+        return rootElement().$x(CHECKBOX_COMPLETE_DATES).shouldBe(exist);
+    }
+
+    public SelenideElement getDataAboutDueDate() {
+        return rootElement().$x(DATA_ABOUT_DUE_DATE).shouldBe(visible);
     }
 }

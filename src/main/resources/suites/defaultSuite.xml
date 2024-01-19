@@ -13,12 +13,24 @@
             <class name="tests.boardTests.CheckTheAvailabilityAllElements"/>
             <class name="tests.boardTests.listTests.CreateList"/>
             <class name="tests.boardTests.listTests.EditListAtTheBoard"/>
+            <class name="tests.boardTests.listTests.MoveListToBoard"/>
+            <class name="tests.boardTests.listTests.cardTests.DeleteChecklistTest"/>
             <class name="tests.boardTests.listTests.cardTests.cecklistTests.CreateChecklistTest"/>
+            <class name="tests.boardTests.listTests.cardTests.cecklistTests.UpdateCheckitemTest"/>
+            <class name="tests.boardTests.listTests.cardTests.cecklistTests.UpdateChecklistTest"/>
+            <class name="tests.boardTests.listTests.cardTests.labelsTests.CreateLabelTest"/>
+            <class name="tests.boardTests.listTests.cardTests.labelsTests.DeleteLabelTest"/>
             <class name="tests.boardTests.listTests.cardTests.CardTests">
                 <methods>
                     <include name="createCardTest"/>
                     <include name="addCommentToTheCard"/>
                     <include name="addAttachmentOnCard"/>
+                    <include name="movingCardsBetweenLists"/>
+                    <include name="editCardTest"/>
+                    <include name="archiveTheCardTest"/>
+                    <include name="searchByContent"/>
+                    <include name="deleteExistingAttachment"/>
+                    <include name="addDateToTheCard"/>
                 </methods>
             </class>
         </classes>

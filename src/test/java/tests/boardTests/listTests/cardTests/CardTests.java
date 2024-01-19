@@ -17,6 +17,8 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
 import static java.net.HttpURLConnection.HTTP_OK;
+import static utils.Month.Feb;
+import static utils.Month.Mar;
 
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
@@ -200,5 +202,26 @@ public class CardTests extends TestInit {
 
         softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentBody.getName())),
                 "Attachment with name: " + attachmentBody.getName() + "does not deleted");
+    }
+
+    @Test(description = "Check adding data in Card")
+    @Description("PJ2024-57")
+    public void addDateToTheCard() {
+        String cardId = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        String listName = listBody.getName();
+        String cardName = cardBody.getName();
+        int startDay = 25;
+        int dueDay = 20;
+        CardBuilder dueAndStartData = CardBuilder.builder().due(Feb + "/" + dueDay + "/2024").start(Mar + "/" + startDay + "/2024").build();
+
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName, cardName).click();
+
+        apiCardClient.addDateToCard(cardId, dueAndStartData, false, HTTP_OK);
+        apiCardClient.addDateToCard(cardId, dueAndStartData, true, HTTP_OK);
+
+        softAssert.assertTrue(boardPage.isValidDates(dueDay, startDay, Feb, Mar), "Dates aren't match");
+        softAssert.assertTrue(boardPage.isCompleteCheckboxDates(), "The dates doesn't complete");
     }
 }

@@ -100,4 +100,19 @@ public class ApiCardClient extends BaseRestTestClient {
                 .body()
                 .extract().as(CardResponse.class);
     }
+
+    @Step("Add date to card with id: {cardId}. Expected status code {expectedStatusCode}")
+    public CardResponse addDateToCard(String cardId, CardBuilder cardBody, boolean dueComplete, int expectedStatusCode) {
+        return given()
+                .spec(requestSpec)
+                .when()
+                .queryParam("dueComplete", dueComplete)
+                .body(cardBody)
+                .put("/1/cards/{1}", cardId)
+                .then()
+                .statusCode(expectedStatusCode)
+                .log()
+                .body()
+                .extract().as(CardResponse.class);
     }
+}

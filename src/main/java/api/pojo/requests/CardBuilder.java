@@ -19,4 +19,6 @@ public class CardBuilder {
     private String due = "";
     @Builder.Default
     private boolean closed = false;
+    @Builder.Default
+    private String start ="";
 }
