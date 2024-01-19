@@ -153,4 +153,28 @@ public class CardTests extends TestInit {
         softAssert.assertTrue(archivedTitles.stream().anyMatch(title -> title.equals(cardName)),
                 "The card with name: " + cardName + "does not exist in archived list");
     }
+
+    @Test(description = " 6.1. Search by the content of boards and cards")
+    @Description("PJ2024-20")
+    public void searchByContent() {
+        String boardName = boardBody.getName();
+        String cardName = cardBody.getName();
+        List<String> searchBoardResult, searchCardResult;
+
+        apiCardClient.createNewCard(cardBody,listId,HTTP_OK);
+        refresh();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(boardName);
+
+        searchBoardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().clear();
+        trelloHomePage.getTrelloHomeHeaderFragment().getSearchField().sendKeys(cardName);
+
+        searchCardResult = trelloHomePage.getTrelloHomeHeaderFragment().getListOfSearchResultTitles();
+
+        softAssert.assertTrue(searchBoardResult.stream().anyMatch(genre -> genre.equals(boardName))
+                ,"No such result with name: " + boardName);
+        softAssert.assertTrue(searchCardResult.stream().anyMatch(genre -> genre.equals(cardName))
+                ,"No such result with name: " + cardName);
+    }
 }

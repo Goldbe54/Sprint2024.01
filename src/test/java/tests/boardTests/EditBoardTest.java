@@ -34,4 +34,21 @@ public class EditBoardTest extends TestInit {
                 "No matches any board name");
         softAssert.assertAll();
     }
+
+    @Test(description = "Check the view closed board")
+    @Description("PJ2024-56")
+    public void changeStatusBoard() {
+        String boardName = boardBody.getName();
+        boolean createdBoardOnWorkSpace = trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).isDisplayed();
+
+        apiBoardClient.doOpenOrCloseExistBoard(boardId, boardBody, true, HTTP_OK);
+        trelloHomePage.getAllBoardsFragment().getViewAllClosedBoards().click();
+
+        boolean createdBoardOnClosedBoardsAfterClosed = trelloHomePage.getAllClosedBoardsFragment().specialBoardTitle(boardName).isDisplayed();
+
+        trelloHomePage.getAllClosedBoardsFragment().getCloseViewAllClosedBoardsButton().click();
+
+        softAssert.assertTrue(createdBoardOnWorkSpace, "The board " + boardName + "doesn't open");
+        softAssert.assertTrue(createdBoardOnClosedBoardsAfterClosed, "The board " + boardName + "is open");
+    }
 }
