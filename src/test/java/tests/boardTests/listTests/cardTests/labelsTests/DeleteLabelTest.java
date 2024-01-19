@@ -12,7 +12,6 @@ import tests.TestInit;
 import ui.pages.BoardPage;
 import ui.pages.TrelloHomePage;
 
-import java.util.List;
 import static com.codeborne.selenide.Selenide.refresh;
 
 public class DeleteLabelTest extends TestInit {
@@ -36,19 +35,17 @@ public class DeleteLabelTest extends TestInit {
     @Test(description = "Delete label from card")
     @Description("PJ2024-55")
     public void deleteLabelTest(){
-        String allLabels;
         String boardName = boardBody.getName();
-        labelId = apiLabelClient.createNewLabel(labelName, "red", boardId, 200).getId();
+        String listName = listBody.getName();
+        String cardName = cardBody.getName();
 
         apiLabelClient.addLabelToCard(cardId, labelId, 200);
         apiLabelClient.deleteLabel(cardId, labelId, 200);
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
-        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,cardName).click();
 
-        allLabels = String.valueOf(boardPage.getCardFragment().getLabelInfo());
-
-        softAssert.assertFalse(allLabels.contains(labelName),
-                "Label" + labelName + " is still present after deletion");
+        Boolean asertBoolean = boardPage.getCardFragment().isLabelsAbsent();
+        softAssert.assertFalse(asertBoolean, "Label " + labelName + " is still present after deletion");
     }
 }
