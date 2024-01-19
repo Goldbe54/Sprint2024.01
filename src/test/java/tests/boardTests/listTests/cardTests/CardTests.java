@@ -189,17 +189,17 @@ public class CardTests extends TestInit {
 
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
         String idAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, HTTP_OK).getId();
+        AttachmentBuilder secondAttachmentBody = AttachmentBuilder.builder().build();
+        apiCardClient.createAttachmentOnCard(secondAttachmentBody, idCard, HTTP_OK).getId();
 
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
 
-        allAttachmentTitle = boardPage.getCardFragment().getAttachmentTitles();
-
-        String attachmentName = String.valueOf(boardPage.getCardFragment().getSelectedAttachment(attachmentBody.getName()));
-
         apiCardClient.deleteExistingAttachment(idCard, idAttachment, HTTP_OK);
         refresh();
-        softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentName)),
-                "Is attachment with name: " + attachmentName);
 
+        allAttachmentTitle = boardPage.getCardFragment().getAttachmentTitles();
+
+        softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentBody.getName())),
+                "Is attachment with name: " + attachmentBody.getName());
     }
 }
