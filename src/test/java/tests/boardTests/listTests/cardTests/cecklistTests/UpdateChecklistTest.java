@@ -6,7 +6,6 @@ import api.clients.ApiListClient;
 import api.pojo.requests.CardBuilder;
 import api.pojo.requests.ChecklistBuilder;
 import api.pojo.requests.ListBuilder;
-import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Description;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -22,9 +21,9 @@ public class UpdateChecklistTest extends TestInit {
     private final ApiChecklistClient apiChecklistClient = new ApiChecklistClient(BASE_URL);
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
     private final ApiCardClient apiCardClient = new ApiCardClient(BASE_URL);
-    private static ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private static final BoardPage boardPage = new BoardPage();
     private static final TrelloHomePage trelloHomePage = new TrelloHomePage();
+    private static ChecklistBuilder checklistBody = ChecklistBuilder.builder().build();
     private static final ListBuilder listBody = ListBuilder.builder().build();
     private static final CardBuilder cardBody = CardBuilder.builder().build();
     private String checklistId, listId, cardId;
