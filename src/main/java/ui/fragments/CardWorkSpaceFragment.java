@@ -11,6 +11,7 @@ import static com.codeborne.selenide.Condition.exist;
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 import static java.lang.String.format;
+import static java.nio.file.Files.getAttribute;
 
 public class CardWorkSpaceFragment {
 
@@ -22,6 +23,8 @@ public class CardWorkSpaceFragment {
     private static final String SPECIFIC_CHECKLIST_TITLE = ".//h3[text()='%s']";
     private static final String CHECKITEMS_NAMES_IN_CHECKLIST = "./ancestor::div[@Class='checklist']//span[@id]";
     private static final String ALL_LABEL_TITLES = ".//span[@data-testid='card-label']";
+    private static final String CHECKBOX_COMPLETE_DATES = ".//a[@aria-label='Mark due date as complete']";
+    private static final String DATA_ABOUT_DUE_DATE = ".//div[contains(@class,'card-detail-badge-due')]";
 
     private SelenideElement rootElement() {
         return $x("//div[contains(@class,'card-detail-window')]");
@@ -68,5 +71,13 @@ public class CardWorkSpaceFragment {
     public List<String> getListCheckitemsTitlesInChecklist(String checklistName) {
         ElementsCollection collection = getSpecificChecklistName(checklistName).$$x(CHECKITEMS_NAMES_IN_CHECKLIST).shouldBe(sizeGreaterThan(0));
         return ElementUtil.getListOfStrings(collection);
+    }
+
+    public SelenideElement getCheckboxCompleteDates() {
+        return rootElement().$x(CHECKBOX_COMPLETE_DATES).shouldBe(exist);
+    }
+
+    public SelenideElement getDataAboutDueDate() {
+        return rootElement().$x(DATA_ABOUT_DUE_DATE).shouldBe(visible);
     }
 }

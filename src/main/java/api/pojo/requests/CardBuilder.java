@@ -17,4 +17,6 @@ public class CardBuilder {
     private String pos = "top";
     @Builder.Default
     private String due = "";
+    @Builder.Default
+    private String start ="";
 }

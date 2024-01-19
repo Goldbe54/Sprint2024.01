@@ -17,6 +17,8 @@ import java.util.List;
 
 import static com.codeborne.selenide.Selenide.refresh;
 import static java.net.HttpURLConnection.HTTP_OK;
+import static utils.Month.Feb;
+import static utils.Month.Mar;
 
 public class CardTests extends TestInit {
     private final ApiListClient apiListClient = new ApiListClient(BASE_URL);
@@ -112,27 +114,48 @@ public class CardTests extends TestInit {
     @Test(description = "3.5 Edit card at the board")
     @Description("PJ2024-32")
     public void editCardTest() {
-        String cardId = apiCardClient.createNewCard(cardBody, listId, 200).getId();
+        String cardId = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
 
         String boardName = boardBody.getName();
         String listName = listBody.getName();
-        String newCardName  = "Updated Name";
-        String newCardDesc  = "Updated description";
+        String newCardName = "Updated Name";
+        String newCardDesc = "Updated description";
 
         CardBuilder cardBody = CardBuilder.builder().name(newCardName).desc(newCardDesc).build();
 
-        apiCardClient.editCard(cardId, cardBody, 200);
+        apiCardClient.editCard(cardId, cardBody, HTTP_OK);
         refresh();
         trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).click();
 
         allCardsTitles = boardPage.getBoardWorkSpaceFragment().getCardTitles(listName);
 
-        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName,newCardName).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName, newCardName).click();
 
         String checkedCardDesc = boardPage.getCardFragment().getCardDescription().getText();
 
         softAssert.assertTrue(allCardsTitles.stream().anyMatch(title -> title.equals(newCardName)),
                 "Card name was not updated correctly");
-        softAssert.assertEquals(newCardDesc , checkedCardDesc, "Card description was not updated correctly");
+        softAssert.assertEquals(newCardDesc, checkedCardDesc, "Card description was not updated correctly");
+    }
+
+    @Test(description = "Check adding data in Card")
+    @Description("PJ2024-57")
+    public void addDateToTheCard() {
+        String cardId = apiCardClient.createNewCard(cardBody, listId, HTTP_OK).getId();
+        String listName = listBody.getName();
+        String cardName = cardBody.getName();
+        int startDay = 25;
+        int dueDay = 20;
+        CardBuilder dueAndStartData = CardBuilder.builder().due(Feb + "/" + dueDay + "/2024").start(Mar + "/" + startDay + "/2024").build();
+
+
+        trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardBody.getName()).click();
+        boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listName, cardName).click();
+
+        apiCardClient.addDateToCard(cardId, dueAndStartData, false, HTTP_OK);
+        apiCardClient.addDateToCard(cardId, dueAndStartData, true, HTTP_OK);
+
+        softAssert.assertTrue(boardPage.isValidDates(dueDay, startDay, Feb, Mar), "Dates aren't match");
+        softAssert.assertTrue(boardPage.isCompleteCheckboxDates(), "The dates doesn't complete");
     }
 }
