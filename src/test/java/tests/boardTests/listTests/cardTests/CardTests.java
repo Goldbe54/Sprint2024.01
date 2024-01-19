@@ -190,16 +190,15 @@ public class CardTests extends TestInit {
         AttachmentBuilder attachmentBody = AttachmentBuilder.builder().build();
         String idAttachment = apiCardClient.createAttachmentOnCard(attachmentBody, idCard, HTTP_OK).getId();
         AttachmentBuilder secondAttachmentBody = AttachmentBuilder.builder().build();
-        apiCardClient.createAttachmentOnCard(secondAttachmentBody, idCard, HTTP_OK).getId();
 
+        apiCardClient.createAttachmentOnCard(secondAttachmentBody, idCard, HTTP_OK);
         boardPage.getBoardWorkSpaceFragment().getSpecificCardTitleInList(listBody.getName(), cardBody.getName()).click();
-
         apiCardClient.deleteExistingAttachment(idCard, idAttachment, HTTP_OK);
         refresh();
 
         allAttachmentTitle = boardPage.getCardFragment().getAttachmentTitles();
 
         softAssert.assertTrue(allAttachmentTitle.stream().noneMatch(genre -> genre.equals(attachmentBody.getName())),
-                "Is attachment with name: " + attachmentBody.getName());
+                "Attachment with name: " + attachmentBody.getName() + "does not deleted");
     }
 }
