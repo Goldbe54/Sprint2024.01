@@ -51,7 +51,7 @@ public class AllBoardsFragment {
         return ElementUtil.getListOfStrings(allBoardsList);
     }
 
-    public void clickAllClosedBoards() {
-        rootElement().$x(VIEW_ALL_CLOSED_BOARDS).shouldBe(visible).click();
+    public SelenideElement getViewAllClosedBoards() {
+        return rootElement().$x(VIEW_ALL_CLOSED_BOARDS).shouldBe(visible);
     }
 }

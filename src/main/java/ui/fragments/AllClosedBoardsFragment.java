@@ -19,7 +19,7 @@ public class AllClosedBoardsFragment {
         return rootElement().$x(format(SPECIAL_BOARD_TITLE, boardName)).shouldBe(visible);
     }
 
-    public void clickCloseViewAllClosedBoardButton() {
-        rootElement().$x(HEADER_CLOSE_ICON).click();
+    public SelenideElement getCloseViewAllClosedBoardsButton() {
+        return rootElement().$x(HEADER_CLOSE_ICON).shouldBe(visible);
     }
 }

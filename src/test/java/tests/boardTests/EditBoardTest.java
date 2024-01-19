@@ -41,12 +41,12 @@ public class EditBoardTest extends TestInit {
         String boardName = boardBody.getName();
         boolean createdBoardOnWorkSpace = trelloHomePage.getAllBoardsFragment().specialBoardTitle(boardName).isDisplayed();
 
-        apiBoardClient.doOpenOrCloseExistBoard(boardId, true, HTTP_OK);
-        trelloHomePage.getAllBoardsFragment().clickAllClosedBoards();
+        apiBoardClient.doOpenOrCloseExistBoard(boardId, boardBody, true, HTTP_OK);
+        trelloHomePage.getAllBoardsFragment().getViewAllClosedBoards().click();
 
         boolean createdBoardOnClosedBoardsAfterClosed = trelloHomePage.getAllClosedBoardsFragment().specialBoardTitle(boardName).isDisplayed();
 
-        trelloHomePage.getAllClosedBoardsFragment().clickCloseViewAllClosedBoardButton();
+        trelloHomePage.getAllClosedBoardsFragment().getCloseViewAllClosedBoardsButton().click();
 
         softAssert.assertTrue(createdBoardOnWorkSpace, "The board " + boardName + "doesn't open");
         softAssert.assertTrue(createdBoardOnClosedBoardsAfterClosed, "The board " + boardName + "is open");

@@ -5,9 +5,10 @@ import ui.common.BasePage;
 import ui.fragments.AllBoardsFragment;
 import ui.fragments.AllClosedBoardsFragment;
 
-@Getter
 public class TrelloHomePage extends BasePage {
 
+    @Getter
     private final AllBoardsFragment allBoardsFragment = new AllBoardsFragment();
+    @Getter
     private final AllClosedBoardsFragment allClosedBoardsFragment = new AllClosedBoardsFragment();
 }

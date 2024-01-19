@@ -8,6 +8,4 @@ public class LoginPage extends BasePage {
 
     @Getter
     private final LoginFragment loginFragment = new LoginFragment();
-
-
 }
